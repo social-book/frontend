@@ -14,3 +14,13 @@ h1 {
 .startmenubar {
   background-color: rgb(20,230,0);
 }
+
+.loginmain {
+  margin-top: 30px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.nomargin {
+  margin: auto;
+}
