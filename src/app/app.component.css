@@ -21,6 +21,12 @@ h1 {
   text-align: center;
 }
 
+.registrationinputs {
+  width: available;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .nomargin {
   margin: auto;
 }
