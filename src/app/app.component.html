@@ -1,24 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class=startmenubar style="text-align:center">
-  <h1>
-    Welcome to Social Book
-  </h1>
-</div>
-<div class="loginmain">
-  <div class="registrationinputs">
-    <p>Username:</p>
-    <input class="registrationinputs" id="username">
-  </div>
-  <div class="registrationinputs">
-    <p>Password:</p>
-    <input class="registrationinputs" id="password" type="password">
-  </div>
-  <div>
-    <button type="button">Login</button>
-  </div>
-  <div>
-    <p>New user? You can register <a href="">here</a></p>
-  </div>
-
+﻿<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <alert></alert>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- credits -->
+<div class="text-center">
+    <p>
+        <a href="http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial" target="_top">Angular 6 User Registration and Login Example & Tutorial</a>
+    </p>
+    <p>
+        <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+</div>
