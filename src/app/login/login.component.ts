@@ -50,9 +50,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
-    this.postData('https://jsonplaceholder.typicode.com/posts', [['Content-Type', 'application/json']], [['name', 'miha']])
-
+    this.postData('https://jsonplaceholder.typicode.com/posts', [['Content-Type', 'application/json']], [['name', 'miha']]);
     /*
     //////GET/////
     const headers = new Headers();
@@ -79,11 +77,11 @@ export class LoginComponent implements OnInit {
   }
 
   postData(url: string, headers: string[][], parameters: string[][]) {
-    //////GET/////
+    ////// GET/////
     const headersObj = new Headers();
 
-    for (let i = 0; i = headers.length; i++) {
-      headersObj.append(headers[0][i], headers[1][i]);
+    for (let i = 0; i < headers.length; i++) {
+      headersObj.append(headers[i][0], headers[i][1]);
     }
     /*
     headersObj.append('Content-Type', 'application/json');
@@ -91,12 +89,14 @@ export class LoginComponent implements OnInit {
     */
     const params = new URLSearchParams();
 
-    for (let i = 0; i = parameters.length; i++) {
+    for (let i = 0; i < parameters.length; i++) {
+      // console.log(parameters[i][0] + ' : ' + parameters[i][1] + ' łłłłł ' + parameters[0][i] + ' : ' + parameters[1][i])
       params.append(parameters[i][0], parameters[i][1]);
     }
-    //params.append('ax', this.someParamValue);
-    const collection: Observable<string> = this.http.post(url, {headers: headers, search: params});
+    // params.append('ax', this.someParamValue);
+    // @ts-ignore
+    const collection: Observable<string> =  this.http.post(url, {headers: headers, search: params});
     collection.forEach(key => console.log(key));
   }
-  //https://jsonplaceholder.typicode.com/posts
+  // https://jsonplaceholder.typicode.com/posts
 }
