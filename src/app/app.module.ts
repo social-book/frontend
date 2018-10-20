@@ -17,7 +17,8 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import {Http} from '@angular/http';;
-import { SidebarComponent } from './sidebar/sidebar.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { SidebarComponent } from './sidebar/sidebar.component'
         LoginComponent,
         RegisterComponent,
         SidebarComponent
-    ],
+,
+        ProfileComponent    ],
     providers: [
         AuthGuard,
         AlertService,
