@@ -16,7 +16,8 @@ import { AlertService, AuthenticationService, UserService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import {Http} from '@angular/http';
+import {Http} from '@angular/http';;
+import { SidebarComponent } from './sidebar/sidebar.component'
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import {Http} from '@angular/http';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        SidebarComponent
     ],
     providers: [
         AuthGuard,

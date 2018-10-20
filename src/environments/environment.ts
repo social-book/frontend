@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+  apiUrl: 'http://77.111.11.122',
+  user_path: 'users',
+  catalog_service_path: 'albums',
+  comments_path: 'comments',
+  notfications_path: 'notfications'
+
 };
 
 /*

@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.postData('https://jsonplaceholder.typicode.com/posts', [['Content-Type', 'application/json']], [['name', 'miha']]);
+    // this.postData('https://jsonplaceholder.typicode.com/posts', [['Content-Type', 'application/json']], [['name', 'miha']]);
     /*
+
     //////GET/////
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
     collection.forEach(key => console.log(key));
     */
 
-    /*this.loading = true;
+    this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
         .pipe(first())
         .subscribe(
@@ -73,9 +74,9 @@ export class LoginComponent implements OnInit {
                 this.alertService.error(error);
                 this.loading = false;
             });
-            */
   }
 
+  // mock
   postData(url: string, headers: string[][], parameters: string[][]) {
     ////// GET/////
     const headersObj = new Headers();
