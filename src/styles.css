@@ -67,19 +67,29 @@ body {
   height: 8vh;
 }
 
+.registerhalf {
+  font-size: 36px;
+}
+
 .registerfont {
   font-size: 72px;
 }
 
 .linky{
+  font-weight: bold;
+  font-size: 3vh;
   color: #2f2f2f;
+  margin-left: 10px;
 }
 
 .buttons {
+  font-weight: bold;
+  font-size: 3vh;
+  height: 9vh;
+  width: 18vh;
   color: #ffffff !important;
   text-transform: uppercase;
   background: #289b1b;
-  margin-right: 10px;
   padding: 20px;
   border-radius: 5px;
   display: inline-block;

@@ -19,7 +19,9 @@ import { RegisterComponent } from './register';
 import {Http} from '@angular/http';;
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component'
-
+;
+import { FindpeopleComponent } from './findpeople/findpeople.component';
+import { AddimageComponent } from './addimage/addimage.component'
 @NgModule({
     imports: [
         BrowserModule,
@@ -35,7 +37,9 @@ import { ProfileComponent } from './profile/profile.component'
         RegisterComponent,
         SidebarComponent
 ,
-        ProfileComponent    ],
+        ProfileComponent ,
+        FindpeopleComponent ,
+        AddimageComponent  ],
     providers: [
         AuthGuard,
         AlertService,

@@ -6,5 +6,5 @@
 })
 
 export class AppComponent {
-    titleText: String = 'hello';
+    // titleText: String = 'hello';
 }
