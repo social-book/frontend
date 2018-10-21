@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services';
 import { User } from '../_models';
-import { userInfo } from 'os';
+// import { userInfo } from 'os';
 
 @Component({
   selector: 'app-profile',
@@ -19,10 +19,11 @@ export class ProfileComponent implements OnInit {
       console.log('Current object: ', val, '  user ', this.user);
       this.user.userId = val[0].userId;
       this.user.username = val[0].username;
+
+      document.getElementById('nasl').innerHTML = '' + this.user.username + '\'s profile';
    },
    (msg) => { console.log('Error Object: ', msg); });
-
-   console.log(document.getElementById('nasl'));
+   console.log(document.getElementById('title').innerHTML);
 
     /*
     this.user.userId = obs[0].id;
