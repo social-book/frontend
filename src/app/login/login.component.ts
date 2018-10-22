@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {AlertService, AuthenticationService} from '../_services';
 import {Observable} from 'rxjs';
+import {stringify} from 'querystring';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -63,14 +64,48 @@ export class LoginComponent implements OnInit {
     collection.forEach(key => console.log(key));
     */
 
+    // console.log(this.returnUrl);
+
+
+///////////////////// MOCK
+
+
+    this.loading = true;
+    this.authenticationService.loginMockToBaseUrl(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(this.returnUrl);
+          console.log(stringify(data) + ' helloworld');
+          this.router.navigate([this.returnUrl + '/home']);
+        },
+        error => {
+          console.log(this.returnUrl);
+          console.log(error + ' helloworld');
+          this.alertService.error(error);
+          this.loading = false;
+        });
+
+
+    ///////
+
+
+
+
+
+
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
         .pipe(first())
         .subscribe(
             data => {
+                console.log(this.returnUrl);
+                console.log(data + ' helloworld');
                 this.router.navigate([this.returnUrl]);
             },
             error => {
+                console.log(this.returnUrl);
+                console.log(error + ' helloworld');
                 this.alertService.error(error);
                 this.loading = false;
             });

@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { User } from '../_models';
@@ -14,6 +14,19 @@ export class UserService {
 
     getById(id: number) {
         return this.http.get(`${environment.apiUrl}/${environment.user_path}/` + id);
+    }
+
+    getByName(name: string) {
+      return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
+    }
+
+
+    /* duplicate */
+    login(user: User) {
+      return this.http.post(`${environment.apiUrl}/${environment.user_path}/login`, {
+        'username': user.username,
+        'password': user.password
+      });
     }
 
     register(user: User) {

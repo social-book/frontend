@@ -1,6 +1,8 @@
 ﻿// TODO use appropriate parameters...
 export class User {
     userId: number;
+    name: string;
+    surname: string;
     username: string;
     password: string;
 }
