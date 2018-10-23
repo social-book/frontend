@@ -3,14 +3,16 @@ import { first } from 'rxjs/operators';
 
 import { User } from '../_models';
 import { UserService } from '../_services';
+import {SharedDataService} from '../shared-data.service';
 
 @Component({templateUrl: 'home.component.html'})
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, sharedData: SharedDataService) {
         // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      sharedData.user = this.currentUser;
     }
 
     ngOnInit() {

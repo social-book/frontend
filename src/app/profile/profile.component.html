@@ -2,17 +2,23 @@
 <div id="container">
     <app-sidebar></app-sidebar>
     <div class="padding" id="content">
-      <div>
-        <p>Your information</p>
-        <img>
-
+      <div style="height: 148px">
+        <div class="first">
+          <img style="width: 128px; height: 128px;" src="{{sd.user.imgref}}">
+        </div>
+        <div class="second">
+          <p>Your information</p>
+          <p>{{sd.user.name}} {{sd.user.surname}}</p>
+        </div>
       </div>
       <div>
-        <p>Your albums</p>
+        <div class="classic">
+          <p>Your albums</p>
 
-      </div>
-      <div>
-        <p>Your friends</p>
+        </div>
+        <div class="classic">
+          <p>Your friends</p>
+        </div>
       </div>
       <router-outlet></router-outlet>
     </div>

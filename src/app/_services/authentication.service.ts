@@ -56,7 +56,7 @@ export class AuthenticationService {
     };
 
     // { username: username, password: password }
-    return this.http.post<any>(`${environment.apiUrl}/`,
+    return this.http.post<any>(`https://jsonplaceholder.typicode.com/posts/`,
       httpOptions
     )
       .pipe(map(user => {

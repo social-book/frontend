@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+  apiUrl: 'https://my-json-server.typicode.com/mihastele/myJsonMock/',
   user_path: 'user',
   catalog_service_path: 'albums',
   comments_path: 'comments',
@@ -14,6 +14,8 @@ export const environment = {
     //comment jewbox
 
     https://my-json-server.typicode.com/mihastele/myJsonMock/
+
+    https://jsonplaceholder.typicode.com/posts - FOR POST TEST
 
 
    */
