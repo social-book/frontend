@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
     const obs$ = userService.getAll().subscribe((val) => {
       console.log('Current object: ', val, '  user ', this.user);
-      this.user.userId = val[0].userId; //pipe getall.pipe(first())..
+      this.user.userId = val[0].userId; // pipe getall.pipe(first())..
       this.user.username = val[0].username;
       this.user.name = val[0].name;
       this.user.surname = val[0].surname;
