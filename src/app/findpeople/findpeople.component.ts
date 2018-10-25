@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from '../_models';
+import {UserService} from '../_services';
 
 @Component({
   selector: 'app-findpeople',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindpeopleComponent implements OnInit {
 
-  constructor() { }
+  users$: Observable<User[]>;
+
+  constructor(userService: UserService) {
+    this.users$ = userService.getAll();
+  }
 
   ngOnInit() {
   }

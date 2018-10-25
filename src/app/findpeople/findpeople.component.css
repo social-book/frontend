@@ -1,4 +1,27 @@
 .division {
     width: 100%;
-    
+}
+
+.first {
+  width: 156px;
+  float: left;
+  text-align: left;
+}
+.second {
+  width: auto;
+  float: left;
+  text-align: left;
+}
+
+.classic {
+  float: revert;
+}
+
+
+.addbtn{
+  margin-left: 10px;
+  vertical-align: center;
+  align-self: center;
+  height: 48px;
+  width: 72px;
 }
