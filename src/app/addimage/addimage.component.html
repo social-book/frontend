@@ -7,7 +7,9 @@
       </div>
       <div>
         <p>Choose images</p>
-        <input id="images" type="file">
+        <input type="file" multiple (change)="onChange($event, showFileNames)" />
+        <input #showFileNames />
+        <button (click)="onUpload()">Upload!</button>
       </div>
       <router-outlet></router-outlet>
     </div>
