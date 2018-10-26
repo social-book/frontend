@@ -23,7 +23,7 @@ export class AddimageComponent implements OnInit {
   onUpload() {
     const uploadData = new FormData();
 
-    for ( let i = 0; i< this.files.length; i++ ) {
+    for ( let i = 0; i < this.files.length; i++ ) {
       uploadData.append('myFile', this.files[i], this.files[i].name);
       console.log('posting file: ' + this.files[i].name);
       this.http.post('https://jsonplaceholder.typicode.com/posts/', uploadData, {
