@@ -1,0 +1,17 @@
+ul {
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;
+    height: 64px;
+}
+
+
+li {
+    color: white;
+    font-weight: bold;
+    float: left;
+    margin-right: 20px;
+    height: inherit;
+}
+
