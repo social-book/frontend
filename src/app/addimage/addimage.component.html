@@ -1,7 +1,18 @@
 <div id="container">
     <app-sidebar></app-sidebar>
     <div class="padding" id="content">
-      <div>
+      <ul style="margin-bottom:25px;">
+          <li style="background-color:#289b1b;" (click)="xor1()"><p>Upload to new album</p></li>
+          <li style="background-color:#289b1b;" (click)="xor2()"><p>Upload to existing album</p></li>
+      </ul>
+
+      <div id="sa" hidden=true>
+          <p>Select album</p>
+          <select>
+              <option value="TODO">TODO</option>
+          </select>
+        </div>
+      <div id="ca" hidden=false>
         <p>Name your album</p>
         <input style="width: 100%">
       </div>

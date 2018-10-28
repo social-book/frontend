@@ -16,12 +16,11 @@ import { AlertService, AuthenticationService, UserService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import {Http} from '@angular/http';;
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProfileComponent } from './profile/profile.component'
-;
-import { FindpeopleComponent } from './findpeople/findpeople.component';
-import { AddimageComponent } from './addimage/addimage.component'
+import {Http} from '@angular/http';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FindpeopleComponent } from './findpeople/findpeople.component';
+import { AddimageComponent } from './addimage/addimage.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -34,7 +33,8 @@ import { AddimageComponent } from './addimage/addimage.component'
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent,
+        RegisterComponent
+,
         SidebarComponent
 ,
         ProfileComponent ,
