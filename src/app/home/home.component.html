@@ -2,6 +2,28 @@
 <div id="container">
     <app-sidebar></app-sidebar>
     <div class="padding" id="content">
+      <div>
+        <ol>
+          <li *ngFor="let user of TODO"> <!-- asnyc for reading observable vals -->
+            <div>
+              <div class="grid-container">
+                <div class="grid-item">
+                  <img src="{{id1}}">
+                </div>
+                <div id="si" class="grid-item">
+                  <img src="{{id2}}">
+                </div>
+                <div id="ti" class="grid-item">
+                  <img src="{{id3}}">
+                </div>
+                <div id="fi" class="grid-item">
+                  <img src="{{id4}}">
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
       <router-outlet></router-outlet>
     </div>
 </div>
