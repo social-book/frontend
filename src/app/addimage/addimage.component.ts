@@ -49,7 +49,9 @@ xor2() {
       uploadData.append('myFile', this.files[i], this.files[i].name);
       console.log('posting file: ' + this.files[i].name);
       console.log('BASE 64: ' + this.getBase64(this.files[i]));
-      this.http.post('https://jsonplaceholder.typicode.com/posts/', uploadData, {
+      // https://jsonplaceholder.typicode.com/posts/
+      // uploadData -> this.files[i]
+      this.http.post('http://localhost:8082/images?albumId=1&userId=1', this.files[i], {
         reportProgress: true,
         observe: 'events'
       })

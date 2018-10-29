@@ -4,11 +4,14 @@ import {first} from 'rxjs/operators';
 import {User} from '../_models';
 import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
+import {PostImg} from '../_models/postImg';
 
-@Component({templateUrl: 'home.component.html'})
+@Component({templateUrl: 'home.component.html',
+  styleUrls: ['./home.component.css']})
 export class HomeComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
+  posts: PostImg[] = [];
   id1: string;
   id2: string;
   id3: string;
@@ -17,7 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, sharedData: SharedDataService) {
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     sharedData.user = this.currentUser;
-    this.id1 = '/home/miha/Documents/git/frontend/src/assets/add.svg';
+    this.id1 = '/assets/fjords.jpg';
     if (this.id2 = null) {
       document.getElementById('si').hidden = true;
     }
@@ -31,10 +34,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // this.loadAllUsers();
-    this.id1 = null;
-    this.id2 = null;
-    this.id3 = null;
-    this.id4 = null;
+    this.id1 = '/assets/fjords.jpg';
+    this.id2 = '/assets/fjords.jpg';
+    this.id3 = '/assets/fjords.jpg';
+    this.id4 = '/assets/fjords.jpg';
+    this.posts.push(new PostImg());
   }
 
   deleteUser(id: number) {
