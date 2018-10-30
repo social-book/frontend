@@ -2,7 +2,6 @@
 import {HttpClient} from '@angular/common/http';
 
 import {environment} from '../../environments/environment';
-import {User} from '../_models';
 import {Album} from '../_models/album';
 
 @Injectable()

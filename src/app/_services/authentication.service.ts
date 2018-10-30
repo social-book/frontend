@@ -72,6 +72,33 @@ export class AuthenticationService {
 
 
 
+  connect() {
+
+    // v primeru zadovoljivega casa dodava se oAuth
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+
+    // { username: username, password: password }
+    return this.http.post<any>(`https://jsonplaceholder.typicode.com/posts/`,
+      httpOptions
+    )
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+
+        return user;
+      }));
+  }
+
+
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

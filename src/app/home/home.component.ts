@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
   id3: string;
   id4: string;
 
-  constructor(private userService: UserService, sharedData: SharedDataService,private albumService: AlbumService) {
+  constructor(private userService: UserService, sharedData: SharedDataService, private albumService: AlbumService) {
 
     this.userService.getAllMock().pipe(first()).forEach(data => this.currentUser = data[0]);
     // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
 
     // const friends$ = userService.getFriends(this.currentUser.userId);
-    const friends$ = userService.mockFriends();
+    const friends$ = this.userService.mockFriends();
 
     friends$.subscribe(data => {
       for (let i = 0; i < data.length; i++) {

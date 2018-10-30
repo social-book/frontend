@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   constructor(userService: UserService, sd: SharedDataService) {
     this.user = new User();
 
+
     const obs$ = userService.getAllMock().subscribe((val) => {
       console.log('Current object: ', val, '  user ', this.user);
       this.user.userId = val[0].userId; // pipe getall.pipe(first())..
@@ -36,8 +37,8 @@ export class ProfileComponent implements OnInit {
     /*
     this.user.userId = obs[0].id;
     this.user.username = obs[0].username;
-    this.user.password = obs[0].password;
-    */
+    this.user.password = obs[0].password;*/
+
    }
 
   ngOnInit() {

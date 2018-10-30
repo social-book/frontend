@@ -18,7 +18,8 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {ProfileComponent} from './profile/profile.component';
 import {FindpeopleComponent} from './findpeople/findpeople.component';
 import {AddimageComponent} from './addimage/addimage.component';
-import { MaintainancemodeComponent } from './maintainancemode/maintainancemode.component';
+import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.component';
+import {AlbumService} from './_services/album.service';
 
 @NgModule({
   imports: [
@@ -33,20 +34,19 @@ import { MaintainancemodeComponent } from './maintainancemode/maintainancemode.c
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
-    ,
-    SidebarComponent
-    ,
+    RegisterComponent,
+    SidebarComponent,
     ProfileComponent,
     FindpeopleComponent,
     AddimageComponent,
     MaintainancemodeComponent,
-    ],
+  ],
   providers: [
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
+    AlbumService,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 

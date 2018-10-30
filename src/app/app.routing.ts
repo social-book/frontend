@@ -7,6 +7,7 @@ import { AuthGuard } from './_guards';
 import { ProfileComponent } from './profile/profile.component';
 import { FindpeopleComponent } from './findpeople/findpeople.component';
 import { AddimageComponent } from './addimage/addimage.component';
+import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'profile', component: ProfileComponent }, // todo check consistency
     { path: 'find', component: FindpeopleComponent }, // todo check consistency
     { path: 'addalbum', component: AddimageComponent }, // todo check consistency
+    { path: 'fail', component: MaintainancemodeComponent }, // todo check consistency
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
