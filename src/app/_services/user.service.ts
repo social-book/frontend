@@ -12,6 +12,16 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}`);
     }
 
+    // /user/{userId}/friends
+    getFriends(id: number) {
+      //  return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
+      return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
+    }
+
+    mockFriends(){
+      return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
+    }
+    
     getById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
     }

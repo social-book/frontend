@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'https://my-json-server.typicode.com/mihastele/myJsonMock/',
-  user_path: 'user',
+  user_path: 'users',
+  album_path: 'albuma',
   catalog_service_path: 'albums',
   comments_path: 'comments',
   notfications_path: 'notfications'
