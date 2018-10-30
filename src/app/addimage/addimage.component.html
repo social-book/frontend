@@ -2,8 +2,8 @@
     <app-sidebar></app-sidebar>
     <div class="padding" id="content">
       <ul style="margin-bottom:25px;">
-          <li style="background-color:#289b1b;" (click)="xor1()"><p>Upload to new album</p></li>
-          <li style="background-color:#289b1b;" (click)="xor2()"><p>Upload to existing album</p></li>
+          <li style="background-color:#289b1b;" (click)="xor1()"><p>Create album</p></li>
+          <li style="background-color:#289b1b;" (click)="xor2()"><p>Post iamges to an album</p></li>
       </ul>
 
       <div id="sa" hidden=true>
@@ -13,10 +13,13 @@
           </select>
         </div>
       <div id="ca" hidden=false>
+        <ngForm action="/{{}}">
         <p>Name your album</p>
         <input style="width: 100%">
+          <input type="submit">
+        </ngForm>
       </div>
-      <div>
+      <div id="uploader" hidden="true">
         <p>Choose images</p>
         <input type="file" multiple (change)="onChange($event, showFileNames)" />
         <input #showFileNames />

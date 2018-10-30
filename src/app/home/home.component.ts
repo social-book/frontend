@@ -6,6 +6,7 @@ import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
 import {PostImg} from '../_models/postImg';
 
+
 @Component({templateUrl: 'home.component.html',
   styleUrls: ['./home.component.css']})
 export class HomeComponent implements OnInit {
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
   id4: string;
 
   constructor(private userService: UserService, sharedData: SharedDataService) {
-    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.userService.getAll().pipe(first()).forEach(data => this.currentUser = data[0]);
+    // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
     sharedData.user = this.currentUser;
     this.id1 = '/assets/fjords.jpg';
     if (this.id2 = null) {
