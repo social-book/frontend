@@ -17,7 +17,8 @@ import {RegisterComponent} from './register';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {ProfileComponent} from './profile/profile.component';
 import {FindpeopleComponent} from './findpeople/findpeople.component';
-import {AddimageComponent} from './addimage/addimage.component';
+import {AddimageComponent} from './addimage/addimage.component';;
+import { MaintainancemodeComponent } from './maintainancemode/maintainancemode.component'
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {AddimageComponent} from './addimage/addimage.component';
     ProfileComponent,
     FindpeopleComponent,
     AddimageComponent],
+    MaintainancemodeComponent,
   providers: [
     AuthGuard,
     AlertService,

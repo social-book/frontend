@@ -3,7 +3,7 @@
     <div class="padding" id="content">
       <ul style="margin-bottom:25px;">
           <li style="background-color:#289b1b;" (click)="xor1()"><p>Create album</p></li>
-          <li style="background-color:#289b1b;" (click)="xor2()"><p>Post iamges to an album</p></li>
+          <li style="background-color:#289b1b;" (click)="xor2()"><p>Post images to an album</p></li>
       </ul>
 
       <div id="sa" hidden=true>
@@ -13,11 +13,11 @@
           </select>
         </div>
       <div id="ca" hidden=false>
-        <ngForm action="/{{}}">
+        <form>
         <p>Name your album</p>
         <input style="width: 100%">
-          <input type="submit">
-        </ngForm>
+          <button type="submit">Create</button>
+        </form>
       </div>
       <div id="uploader" hidden="true">
         <p>Choose images</p>

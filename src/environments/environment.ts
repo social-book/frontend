@@ -11,7 +11,7 @@ export const environment = {
   notfications_path: 'notfications'
 
   /*
-    //comment jewbox
+    // comment jewbox
 
     https://my-json-server.typicode.com/mihastele/myJsonMock/
 
