@@ -17,8 +17,7 @@ export class ProfileComponent implements OnInit {
   constructor(userService: UserService, sd: SharedDataService) {
     this.user = new User();
 
-
-    const obs$ = userService.getAll().subscribe((val) => {
+    const obs$ = userService.getAllMock().subscribe((val) => {
       console.log('Current object: ', val, '  user ', this.user);
       this.user.userId = val[0].userId; // pipe getall.pipe(first())..
       this.user.username = val[0].username;

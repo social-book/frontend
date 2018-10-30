@@ -12,6 +12,11 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}`);
     }
 
+
+    getAllMock() {
+      return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/users`);
+    }
+
     // /user/{userId}/friends
     getFriends(id: number) {
       //  return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
@@ -21,7 +26,6 @@ export class UserService {
     mockFriends(){
       return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
     }
-    
     getById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
     }

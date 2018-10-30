@@ -8,7 +8,6 @@ import {PostImg} from '../_models/postImg';
 import {Album} from '../_models/album';
 import {AlbumService} from '../_services/album.service';
 
-
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.css']
@@ -23,22 +22,26 @@ export class HomeComponent implements OnInit {
   id3: string;
   id4: string;
 
-  constructor(private userService: UserService, private albumService: AlbumService, sharedData: SharedDataService) {
-    this.userService.getAll().pipe(first()).forEach(data => this.currentUser = data[0]);
-    // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private userService: UserService, sharedData: SharedDataService,private albumService: AlbumService) {
 
+    this.userService.getAllMock().pipe(first()).forEach(data => this.currentUser = data[0]);
+    // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
 
     // const friends$ = userService.getFriends(this.currentUser.userId);
     const friends$ = userService.mockFriends();
 
     friends$.subscribe(data => {
       for (let i = 0; i < data.length; i++) {
-        albumService.getByUserId(data[i].userId).subscribe(data1 => {
+        this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
           for (let j = 0; j < data1.length; j++) {
             this.posts.push(data1[j]);
           }
+        }, error => {
+          console.log('error occurred in albumService:     ', error);
         });
       }
+    }, error => {
+      console.log('error occur in friends subscription:   ', error);
     });
 
     console.log(this.posts);
@@ -57,6 +60,8 @@ export class HomeComponent implements OnInit {
     if (this.id4 = null) {
       document.getElementById('fi').hidden = true;
     }
+
+    /**/
   }
 
   ngOnInit() {
