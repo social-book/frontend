@@ -15,9 +15,9 @@ export class FindpeopleComponent implements OnInit {
   users$: Observable<User[]>;
   availableUsers: Array<User>;
 
-  constructor(userService: UserService, sd: SharedDataService) {
+  constructor(protected userService: UserService, public sd: SharedDataService) {
     this.users$ = userService.getAll();
-    sd.user = new User(); //todo get it from logged in id
+    sd.user = new User(); // todo get it from logged in id
     this.users$.pipe(first()).subscribe(data  => {
     sd.user.username = data[0].username;
     sd.user.userId = data[0].userId;

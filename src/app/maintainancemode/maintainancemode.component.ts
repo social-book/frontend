@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-maintainancemode',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaintainancemodeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpclient: HttpClient) {
+
+    this.httpclient.get('https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock').subscribe(data => console.log(data));
+
+  }
 
   ngOnInit() {
   }

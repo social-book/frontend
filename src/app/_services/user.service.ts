@@ -1,11 +1,20 @@
 ﻿import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {environment} from '../../environments/environment';
 import {User} from '../_models';
 
 @Injectable()
 export class UserService {
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'my-auth-token'
+    }),
+    withCredentials: true
+  };
+
   constructor(private http: HttpClient) {
   }
 
@@ -15,7 +24,9 @@ export class UserService {
 
 
   getAllMock() {
-    return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/users`);
+    const link = 'https://my-json-server.typicode.com/mihastele/myJsonMock/users';
+    console.log('sending request to ', link)
+    return this.http.get<User[]>(link, this.httpOptions);
   }
 
   // /user/{userId}/friends
@@ -36,14 +47,20 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
   }
 
+  mockDefault() {
+    return this.http.get(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
+  }
+
+
 
   /* duplicate */
+  /*
   login(user: User) {
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/login`, {
       'username': user.username,
       'password': user.password
     });
-  }
+  }*/
 
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/register`, user);

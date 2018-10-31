@@ -1,9 +1,9 @@
 ﻿// TODO use appropriate parameters...
 export class User {
-    userId: number;
-    name: string;
-    imgref: string;
-    surname: string;
-    username: string;
-    password: string;
+  userId: number;
+  name: string;
+  surname: string;
+  imgref: string;
+  username: string;
+  password: string;
 }

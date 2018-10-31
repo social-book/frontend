@@ -13,14 +13,14 @@ import {AlbumService} from '../_services/album.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  currentUser: User;
-  users: User[] = [];
-  postImages: PostImg[] = [];
-  posts: Album[] = [];
-  id1: string;
-  id2: string;
-  id3: string;
-  id4: string;
+  public currentUser: User;
+  public users: User[] = [];
+  public postImages: PostImg[] = [];
+  public posts: Album[] = [];
+  public id1: string;
+  public id2: string;
+  public id3: string;
+  public id4: string;
 
   constructor(private userService: UserService, sharedData: SharedDataService, private albumService: AlbumService) {
 
@@ -30,10 +30,14 @@ export class HomeComponent implements OnInit {
     // const friends$ = userService.getFriends(this.currentUser.userId);
     const friends$ = this.userService.mockFriends();
 
+    this.userService.mockDefault().pipe(first()).subscribe(data => console.log(data));
+    this.userService.mockFriends().subscribe(data => console.log(data));
+
     friends$.subscribe(data => {
       for (let i = 0; i < data.length; i++) {
         this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
           for (let j = 0; j < data1.length; j++) {
+            console.log(data1[j]);
             this.posts.push(data1[j]);
           }
         }, error => {
