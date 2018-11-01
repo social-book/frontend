@@ -20,7 +20,8 @@ import {FindpeopleComponent} from './findpeople/findpeople.component';
 import {AddimageComponent} from './addimage/addimage.component';
 import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.component';
 import {AlbumService} from './_services/album.service';
-import {SharedDataService} from './shared-data.service';
+import {SharedDataService} from './shared-data.service';;
+import { ViewImageComponent } from './view-image/view-image.component'
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import {SharedDataService} from './shared-data.service';
     ProfileComponent,
     FindpeopleComponent,
     AddimageComponent,
-    MaintainancemodeComponent,
+    MaintainancemodeComponent,,
+    ViewImageComponent
   ],
   providers: [
     AuthGuard,

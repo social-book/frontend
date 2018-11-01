@@ -13,11 +13,16 @@
       <div>
         <div class="classic">
           <p>Your albums</p>
-
+          <div style="width: 100%; overflow:auto;">
+            <div *ngFor="let album of albums" style="width: 128px; float: left">
+              <img style="width: 128px; height: 128px; float: left" src="https://www.southernsoularts.com/wp-content/uploads/2016/10/album-image.gif">
+              <p style="font-size: 16px; font-weight: bold;text-align: center">{{album.album_title}}</p>
+            </div>
+          </div>
         </div>
         <div class="classic">
           <p>Your friends</p>
-          <div style="width: 100%">
+          <div style="width: 100%; overflow:auto;"> <!-- overflow: auto resizes parent div to it's children size -->
             <div *ngFor="let friend of friends" style="width: 128px; float: left">
               <img style="width: 128px; height: 128px; float: left" src="{{friend.imgref}}">
               <p style="font-size: 16px; font-weight: bold;text-align: center">{{friend.name}}</p>
