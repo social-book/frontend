@@ -13,7 +13,7 @@ import {AlbumService} from '../_services/album.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public currentUser: User;
+  // public currentUser: User;
   public users: User[] = [];
   public postImages: PostImg[] = [];
   public posts: Album[] = [];
@@ -22,20 +22,33 @@ export class HomeComponent implements OnInit {
   public id3: string;
   public id4: string;
 
-  constructor(private userService: UserService, sharedData: SharedDataService, private albumService: AlbumService) {
+  constructor(private userService: UserService, public sharedData: SharedDataService, private albumService: AlbumService) {
 
-    this.userService.getAllMock().pipe(first()).forEach(data => this.currentUser = data[0]);
+    // this.userService.getAllMock().pipe(first()).forEach(data => this.currentUser = data[0]);
     // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
 
     // const friends$ = userService.getFriends(this.currentUser.userId);
+
+    this.sharedData.user = JSON.parse(localStorage.getItem('currentUSer'));
+    this.sharedData.setUser(JSON.parse(localStorage.getItem('currentUSer')));
+
+    console.log('constructed home');
+
     const friends$ = this.userService.mockFriends();
 
     this.userService.mockDefault().pipe(first()).subscribe(data => console.log(data));
     this.userService.mockFriends().subscribe(data => console.log(data));
 
     friends$.subscribe(data => {
+      /*for (let i = 0; i < data.length; i++) {
+              this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
+                for (let j = 0; j < data1.length; j++) {
+                  console.log(data1[j]);
+                  this.posts.push(data1[j]);
+                }
+              },*/
       for (let i = 0; i < data.length; i++) {
-        this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
+        this.albumService.getAllMock().subscribe(data1 => {
           for (let j = 0; j < data1.length; j++) {
             console.log(data1[j]);
             this.posts.push(data1[j]);
@@ -53,7 +66,7 @@ export class HomeComponent implements OnInit {
     // const posts$ = albumService.getAll();
 
 
-    sharedData.user = this.currentUser;
+    // sharedData.user = this.currentUser;
     this.id1 = '/assets/fjords.jpg';
     if (this.id2 = null) {
       document.getElementById('si').hidden = true;
@@ -70,6 +83,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     // this.loadAllUsers();
+    console.log('initialized home');
     this.id1 = '/assets/fjords.jpg';
     this.id2 = '/assets/fjords.jpg';
     this.id3 = '/assets/fjords.jpg';
@@ -89,3 +103,4 @@ export class HomeComponent implements OnInit {
     });
   }
 }
+

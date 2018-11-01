@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from './_models';
-import {Observable, Subject} from 'rxjs';
 
-@Injectable({
+/*@Injectable({
   providedIn: 'root'
-})
+})*/
+@Injectable()
 export class SharedDataService {
 
   // myMethod$: Observable<any>;
@@ -12,8 +12,25 @@ export class SharedDataService {
   public user: User;
 
   constructor() {
+
     // this.myMethod$ = this.myMethodSubject.asObservable();
-    this.user = new User();
+    console.log('starting shared data service');
+    console.log(localStorage.getItem('currentUser'));
+
+    // console.log('sharedService initilaized with: ', this.user.name, ' ', this.user.surname);
+  }
+
+  setUserFromOption() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  setUser(data) {
+    this.user = JSON.parse(data);
+    console.log(localStorage.getItem('currentUser'));
+  }
+
+  getLoggedInUser(): User {
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 
   myMethod(data) {

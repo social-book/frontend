@@ -6,8 +6,8 @@
       <li class="inheritsize" *ngFor="let post of posts"> <!-- asnyc for reading observable vals -->
         <div class="inheritsize" style="float: left">
           <div class="namedata">
-            <img style="width: 128px; height: 128px" src="{{currentUser.imgref}}">
-            <p>{{currentUser.name}} {{currentUser.surname}}</p>
+            <img style="width: 128px; height: 128px" src="{{this.sharedData.imgref}}">
+            <p>{{this.sharedData.name}} {{this.sharedData.surname}}</p>
           </div>
           <div style="float: left" class="container">
             <div class="box">

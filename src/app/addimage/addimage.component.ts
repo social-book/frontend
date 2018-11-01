@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {SharedDataService} from '../shared-data.service';
 
 @Component({
   selector: 'app-addimage',
@@ -11,7 +12,8 @@ export class AddimageComponent implements OnInit {
   files: File[];
   params: HttpParams;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public sharedData: SharedDataService) {
+    console.log(this.sharedData.user);
   }
 
   onChange(event: any, input: any) {

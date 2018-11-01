@@ -14,9 +14,19 @@ export class AlbumService {
   }
 
   getAllMock() {
-    return this.http.get<Album[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/albums`);
+    return this.http.get<Album[]>('https://my-json-server.typicode.com/mihastele/myJsonMock/albums');
   }
 
+
+  //// https://demo4582227.mockable.io/albumsandimgs ... updejti vsake 24 ur
+  getAlbumsWithImagesMock() {
+    return this.http.get('http://p04de.mocklab.io/albumsandimgs');
+  }
+
+  //// http://demo4582227.mockable.io ... updejti vsake 24 ur
+  getImagesFromAlbumMock() {
+    return this.http.get('http://p04de.mocklab.io/images');
+  }
 
   getFriendsAlbums(ids: number[]) {
     const albums = [];

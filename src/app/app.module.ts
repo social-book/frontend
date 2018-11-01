@@ -1,9 +1,9 @@
 ﻿import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 // used to create fake backend
-import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from './_helpers';
+import {fakeBackendProvider} from './_helpers';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
@@ -20,6 +20,7 @@ import {FindpeopleComponent} from './findpeople/findpeople.component';
 import {AddimageComponent} from './addimage/addimage.component';
 import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.component';
 import {AlbumService} from './_services/album.service';
+import {SharedDataService} from './shared-data.service';
 
 @NgModule({
   imports: [
@@ -47,11 +48,12 @@ import {AlbumService} from './_services/album.service';
     AuthenticationService,
     UserService,
     AlbumService,
+    SharedDataService,
     /*{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, //keep refreshing
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},*/
 
     // provider used to create fake backend
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

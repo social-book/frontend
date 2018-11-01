@@ -41,6 +41,8 @@ export class AuthenticationService {
     }
 
 
+    /// http://p04de.mocklab.io/login
+
   loginMockToBaseUrl(username: string, password: string) {
 
     // v primeru zadovoljivega casa dodava se oAuth
@@ -56,7 +58,7 @@ export class AuthenticationService {
     };
 
     // { username: username, password: password }
-    return this.http.post<any>(`https://jsonplaceholder.typicode.com/posts/`,
+    return this.http.post<any>(`http://p04de.mocklab.io/login`,
       httpOptions
     )
       .pipe(map(user => {

@@ -1,5 +1,5 @@
 ﻿import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {AlertService, AuthenticationService} from '../_services';
 import {Observable} from 'rxjs';
 import {stringify} from 'querystring';
+import {SharedDataService} from '../shared-data.service';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private  sd: SharedDataService) {
   }
 
   ngOnInit() {
@@ -77,6 +79,9 @@ export class LoginComponent implements OnInit {
         data => {
           console.log(this.returnUrl);
           console.log(stringify(data) + ' helloworld');
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          console.log(localStorage.getItem('currentUser'));
+          this.sd.user = JSON.parse(localStorage.getItem('currentUser'));
           this.router.navigate([this.returnUrl + '/home']);
         },
         error => {
@@ -90,25 +95,21 @@ export class LoginComponent implements OnInit {
     ///////
 
 
-
-
-
-
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                console.log(this.returnUrl);
-                console.log(data + ' helloworld');
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                console.log(this.returnUrl);
-                console.log(error + ' helloworld');
-                this.alertService.error(error);
-                this.loading = false;
-            });
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(this.returnUrl);
+          console.log(data + ' helloworld');
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          console.log(this.returnUrl);
+          console.log(error + ' helloworld');
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
 
   // mock
@@ -131,8 +132,9 @@ export class LoginComponent implements OnInit {
     }
     // params.append('ax', this.someParamValue);
     // @ts-ignore
-    const collection: Observable<string> =  this.http.post(url, {headers: headers, search: params});
+    const collection: Observable<string> = this.http.post(url, {headers: headers, search: params});
     collection.forEach(key => console.log(key));
   }
+
   // https://jsonplaceholder.typicode.com/posts
 }

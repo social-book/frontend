@@ -4,10 +4,10 @@
     <div class="padding" id="content">
       <div style="height: 148px">
         <div class="first">
-          <img style="width: 128px; height: 128px;" src="{{sd.user.imgref}}">
+          <img style="width: 128px; height: 128px;" src="{{user.imgref}}">
         </div>
         <div class="second">
-          <p style="font-size: 72px; font-weight: bold; vertical-align: center; color: #2f2f2f">{{sd.user.name}} {{sd.user.surname}}</p>
+          <p style="font-size: 72px; font-weight: bold; vertical-align: center; color: #2f2f2f">{{user.name}} {{user.surname}}</p>
         </div>
       </div>
       <div>
@@ -17,6 +17,12 @@
         </div>
         <div class="classic">
           <p>Your friends</p>
+          <div style="width: 100%">
+            <div *ngFor="let friend of friends" style="width: 128px; float: left">
+              <img style="width: 128px; height: 128px; float: left" src="{{friend.imgref}}">
+              <p style="font-size: 16px; font-weight: bold;text-align: center">{{friend.name}}</p>
+            </div>
+          </div>
         </div>
       </div>
       <router-outlet></router-outlet>
