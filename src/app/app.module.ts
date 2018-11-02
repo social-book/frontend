@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 // used to create fake backend
-import {fakeBackendProvider} from './_helpers';
 
 import {AppComponent} from './app.component';
 import {routing} from './app.routing';
@@ -20,8 +19,10 @@ import {FindpeopleComponent} from './findpeople/findpeople.component';
 import {AddimageComponent} from './addimage/addimage.component';
 import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.component';
 import {AlbumService} from './_services/album.service';
-import {SharedDataService} from './shared-data.service';;
-import { ViewImageComponent } from './view-image/view-image.component'
+import {SharedDataService} from './shared-data.service';
+import {ViewImageComponent} from './view-image/view-image.component';
+
+;
 
 @NgModule({
   imports: [
@@ -41,7 +42,7 @@ import { ViewImageComponent } from './view-image/view-image.component'
     ProfileComponent,
     FindpeopleComponent,
     AddimageComponent,
-    MaintainancemodeComponent,,
+    MaintainancemodeComponent,
     ViewImageComponent
   ],
   providers: [

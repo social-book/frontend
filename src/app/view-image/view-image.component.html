@@ -1,3 +1,16 @@
-<p>
-  view-image works!
-</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="container">
+  <app-sidebar></app-sidebar>
+  <div class="padding" id="content">
+    <div>
+      <img src="">
+    </div>
+    <div class="reactionSection">
+      <div class="likeSection">
+        <p>{{likenum}} people like this</p>
+        <button class="sbcolor bold" type="button">LIKE</button>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
