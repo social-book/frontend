@@ -23,11 +23,18 @@ export class UserService {
   }
 
 
+  /*
   getAllMock() {
-    const link = 'https://my-json-server.typicode.com/mihastele/myJsonMock/users';
+    const link = 'http://localhost:3000/allusers';
     console.log('sending request to ', link)
     return this.http.get<User[]>(link, this.httpOptions);
   }
+
+  /*getAllMock() {
+    const link = 'https://my-json-server.typicode.com/mihastele/myJsonMock/users';
+    console.log('sending request to ', link)
+    return this.http.get<User[]>(link, this.httpOptions);
+  }*/
 
   // /user/{userId}/friends
   getFriends(id: number) {
@@ -52,8 +59,19 @@ export class UserService {
   }
 
 
+  // TODO
+  addFriend() {
+
+  }
+
+
+  removeFriend() {
+
+  }
+
 
   /* duplicate */
+
   /*
   login(user: User) {
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/login`, {

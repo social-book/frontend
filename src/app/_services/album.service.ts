@@ -14,18 +14,18 @@ export class AlbumService {
   }
 
   getAllMock() {
-    return this.http.get<Album[]>('https://my-json-server.typicode.com/mihastele/myJsonMock/albums');
+    return this.http.get<Album[]>('http://localhost:3000/allalbums');
   }
 
 
   //// https://demo4582227.mockable.io/albumsandimgs ... updejti vsake 24 ur
   getAlbumsWithImagesMock() {
-    return this.http.get('http://p04de.mocklab.io/albumsandimgs');
+    return this.http.get('http://localhost:3000/albumsandimgs');
   }
 
   //// http://demo4582227.mockable.io ... updejti vsake 24 ur
   getImagesFromAlbumMock() {
-    return this.http.get('http://p04de.mocklab.io/images');
+    return this.http.get('http://localhost:3000/images');
   }
 
   getFriendsAlbums(ids: number[]) {
