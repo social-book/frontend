@@ -48,7 +48,14 @@ export class UserService {
 
 
   mockOfRealData() {
-    return this.http.get(`http://77.111.11.122/endpointmocks/users/`);
+    return this.http.get(`http://77.111.11.122/endpointmocks/users/`, {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        )
+      }
+    );
   }
 
   getById(id: number) {
