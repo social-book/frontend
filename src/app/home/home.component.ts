@@ -167,7 +167,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  callWithComponents1(friends$, lc: Document) {
+  callWithComponents1(friends$, lc) {
 
     friends$.subscribe(data => {
       console.log('FETCHING FRIENDS +++++++++++++++++++++++');
@@ -181,16 +181,16 @@ export class HomeComponent implements OnInit {
 
       this.users.push(data);
       console.log('FINISHED FETCHING FRIENDS +++++++++++++++++++++++');
-      this.call2(lc);
+      this.callWithComponents2(lc);
     });
 
   }
 
-  callWithComponents2(lc: Document) {
+  callWithComponents2(lc) {
 
     this.albumService.getAllMock().subscribe(data => {
 
-      DomBuilderForHomeComponent.buildRawListItems(lc, data);
+      DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data);
 
       console.log('FETCHING ALBUMS +++++++++++++++++++++++');
       for (let i = 0; i < data.length; i++) {
@@ -218,7 +218,7 @@ export class HomeComponent implements OnInit {
 
       console.log('FINISHED FETCHING FRIENDS +++++++++++++++++++++++');
 
-      this.call3();
+      this.callWithComponents3();
 
     });
 
