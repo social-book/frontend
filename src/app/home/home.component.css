@@ -32,9 +32,13 @@
 }
 
 .floating {
-  float:left;
+  float: left;
 }
 
+.size128 {
+  width: 128px;
+  height: 128px
+}
 
 .namedata {
   width: 128px;

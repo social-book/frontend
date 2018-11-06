@@ -46,6 +46,11 @@ export class UserService {
     return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
   }
 
+
+  mockOfRealData() {
+    return this.http.get(`http://77.111.11.122/endpointmocks/users/`);
+  }
+
   getById(id: number) {
     return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
   }

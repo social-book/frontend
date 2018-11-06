@@ -1,0 +1,88 @@
+/*
+    this.userService.mockOfRealData().subscribe(data => {
+        console.log('AWRAJT');
+        console.log(data);
+      },
+      error => {
+        console.log('O(NO)');
+      }
+    );*/
+
+
+    /////// /////////// ///////////// //////////// ////////// ////////// //////// /////////
+
+
+    // this.call1(friends$);
+
+    /*
+    this.userService.mockFriends().pipe(first()).subscribe(podatek => {
+      console.log('EEEEEEEEEEEEEEEX          ', podatek);
+    });
+
+
+    /*
+    friends$.subscribe(data => {
+      /*for (let i = 0; i < data.length; i++) {
+              this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
+                for (let j = 0; j < data1.length; j++) {
+                  console.log(data1[j]);
+                  this.posts.push(data1[j]);
+                }
+              },*/
+    /*
+         for (let i = 0; i < data.length; i++) {
+           this.albumService.getAllMock().subscribe(data1 => {
+             for (let j = 0; j < data1.length; j++) {
+               console.log('DATAAAAA111111111: ', data1.length);
+               console.log(data1[j]);
+               // this.postsNumber.push(j); // todo delete
+               const meta = new AlbumMeta();
+               meta.album_id = data1[j].album_id;
+               meta.album_title = data1[j].album_title;
+               meta.category_id = data1[j].category_id;
+               meta.user_id = data1[j].user_id;
+               meta.seq_nr = j;
+
+               console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
+               // fetch user id from albums user id
+               this.userService.mockFriends().pipe(first()).subscribe(podatek => {
+                 console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+                 console.log(podatek[0]);
+                 meta.user = podatek[0];
+               });
+
+               this.posts.push(meta);
+               this.postImages.push([]);
+               for (let k = 0; k < 4; k++) {
+                 this.postImages[j].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
+                   't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
+                   'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));
+               }
+             }
+           }, error => {
+             console.log('error occurred in albumService:     ', error);
+           });
+         }
+       }, error => {
+         console.log('error occur in friends subscription:   ', error);
+       });
+
+       console.log(this.posts);
+
+       // const posts$ = albumService.getAll();
+
+
+       // sharedData.user = this.currentUser;
+       this.id1 = '/assets/fjords.jpg';
+       if (this.id2 = null) {
+         document.getElementById('si').hidden = true;
+       }
+       if (this.id3 = null) {
+         document.getElementById('ti').hidden = true;
+       }
+       if (this.id4 = null) {
+         document.getElementById('fi').hidden = true;
+       }
+
+       /**/
