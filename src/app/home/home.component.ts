@@ -7,6 +7,7 @@ import {SharedDataService} from '../shared-data.service';
 import {PostImg} from '../_models/postImg';
 import {AlbumService} from '../_services/album.service';
 import {AlbumMeta} from '../_models/albumMeta';
+import {DomBuilderForHomeComponent} from './DomBuilder';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -32,20 +33,19 @@ export class HomeComponent implements OnInit {
 
     // const friends$ = userService.getFriends(this.currentUser.userId);
 
+
     this.sharedData.user = JSON.parse(localStorage.getItem('currentUSer'));
     this.sharedData.setUser(JSON.parse(localStorage.getItem('currentUSer')));
 
     console.log('constructed home');
 
-    const friends$ = this.userService.mockFriends();
+    // const friends$ = this.userService.mockFriends();
 
     this.userService.mockDefault().pipe(first()).subscribe(data => console.log(data));
     this.userService.mockFriends().subscribe(data => console.log(data));
 
 
-    this.call1(friends$);
-
-
+    // this.call1(friends$);
 
     /*
     this.userService.mockFriends().pipe(first()).subscribe(podatek => {
@@ -130,6 +130,28 @@ export class HomeComponent implements OnInit {
     this.id3 = '/assets/fjords.jpg';
     this.id4 = '/assets/fjords.jpg';
     // this.posts.push(new PostImg());
+
+    const friends$ = this.userService.mockFriends();
+
+    // this.call1(friends$);
+
+    const listContainer = document.getElementById('listContainer');
+
+    this.callWithComponents1(friends$, listContainer);
+
+    /*
+    const listContainer = document.getElementById('listContainer');
+
+    const el = document.createElement('li');
+
+    try {
+      listContainer.appendChild(el);
+      console.log('errpendid');
+    } catch (xmanca) {
+      console.log(xmanca.toString());
+    }*/
+
+
   }
 
   deleteUser(id: number) {
@@ -143,6 +165,81 @@ export class HomeComponent implements OnInit {
       this.users = users;
     });
   }
+
+
+  callWithComponents1(friends$, lc: Document) {
+
+    friends$.subscribe(data => {
+      console.log('FETCHING FRIENDS +++++++++++++++++++++++');
+      /*for (let i = 0; i < data.length; i++) {
+              this.albumService.getByUserId(data[i].userId).subscribe(data1 => {
+                for (let j = 0; j < data1.length; j++) {
+                  console.log(data1[j]);
+                  this.posts.push(data1[j]);
+                }
+              },*/
+
+      this.users.push(data);
+      console.log('FINISHED FETCHING FRIENDS +++++++++++++++++++++++');
+      this.call2(lc);
+    });
+
+  }
+
+  callWithComponents2(lc: Document) {
+
+    this.albumService.getAllMock().subscribe(data => {
+
+      DomBuilderForHomeComponent.buildRawListItems(lc, data);
+
+      console.log('FETCHING ALBUMS +++++++++++++++++++++++');
+      for (let i = 0; i < data.length; i++) {
+
+        console.log(data);
+        // this.postsNumber.push(j); // todo delete
+        const meta = new AlbumMeta();
+        meta.album_id = data[i].album_id;
+        meta.album_title = data[i].album_title;
+        meta.category_id = data[i].category_id;
+        meta.user_id = data[i].user_id;
+        meta.seq_nr = i++;
+        this.posts.push(meta);
+        // can be anywhere...
+        this.postImages[i] = [];
+        for (let k = 0; k < 4; k++) {
+          this.postImages[i][k] = new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
+            't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
+            'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k);
+          /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
+            't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
+            'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
+        }
+      }
+
+      console.log('FINISHED FETCHING FRIENDS +++++++++++++++++++++++');
+
+      this.call3();
+
+    });
+
+  }
+
+  callWithComponents3() {
+    for (let iter = 0; iter < this.posts.length; iter++) {
+      this.userService.mockFriends().pipe(first()).subscribe(podatek => {
+        console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+        console.log('user SYNC ADD');
+        console.log('PODATEK[0]          ', podatek[0]);
+        this.posts[iter].user = podatek[0];
+        console.log(this.posts[iter]);
+        console.log(this.posts[iter].user);
+        console.log('FINISHED FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+      });
+
+    }
+
+  }
+
 
   call1(friends$) {
 
