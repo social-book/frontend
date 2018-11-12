@@ -15,11 +15,18 @@ export class UserService {
     withCredentials: true
   };
 
+
+  log(str){
+    console.log('calling resource: ', str);
+  }
+
   constructor(private http: HttpClient) {
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}`);
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path)
+    return this.http.get<User[]>(path);
   }
 
 
@@ -39,16 +46,22 @@ export class UserService {
   // /user/{userId}/friends
   getFriends(id: number) {
     //  return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
-    return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
+    const path = `${environment.apiUrl}/${environment.user_path}/${id}/friends`;
+    this.log(path)
+    return this.http.get<User[]>(path);
   }
 
   mockFriends() {
-    return this.http.get<User[]>(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
+    const path = `https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`;
+    this.log(path)
+    return this.http.get<User[]>(path);
   }
 
 
   mockOfRealData() {
-    return this.http.get(`http://77.111.11.122/endpointmocks/users/`, {
+    const path = `http://77.111.11.122/endpointmocks/users/`;
+    this.log(path)
+    return this.http.get(path, {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
@@ -59,15 +72,21 @@ export class UserService {
   }
 
   getById(id: number) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path)
     return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
   }
 
   getByName(name: string) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path)
     return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
   }
 
   mockDefault() {
-    return this.http.get(`https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`);
+    const path = 'https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock';
+    this.log(path)
+    return this.http.get(path);
   }
 
 

@@ -120,7 +120,8 @@ export class HomeComponent implements OnInit {
 
   callWithComponents2(lc) {
 
-    this.albumService.getAllMock().subscribe(data => {
+    console.log('servis: ', this.albumService);
+    this.albumService.getAllMock().pipe(first()).subscribe(data => {
 
         // DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data);
         // console.log(DomBuilderForHomeComponent.liList[0].domElements);
@@ -128,7 +129,9 @@ export class HomeComponent implements OnInit {
         console.log('FETCHING ALBUMS +++++++++++++++++++++++');
         for (let i = 0; i < data.length; i++) {
 
-          DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data);
+
+          console.log('BUILDING LIST ITEM AND LINKING');
+          DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data, i);
 
           console.log(data);
           // this.postsNumber.push(j); // todo delete
@@ -168,17 +171,22 @@ export class HomeComponent implements OnInit {
   }
 
   callWithComponents3() {
+
+    console.log('servis: ', this.albumService);
+    console.log('servis: ', this.userService);
     for (let iter = 0; iter < this.posts.length; iter++) {
       this.userService.mockFriends().pipe(first()).subscribe(podatek => {
-        console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
-        console.log('user SYNC ADD');
-        console.log('PODATEK[0]          ', podatek[0]);
-        this.posts[iter].user = podatek[0];
-        console.log(this.posts[iter]);
-        console.log(this.posts[iter].user);
-        console.log('FINISHED FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
-        DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
-      });
+          console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('user SYNC ADD');
+          console.log('PODATEK[0]   ', podatek[0]);
+          this.posts[iter].user = podatek[0];
+          console.log(this.posts[iter]);
+          console.log(this.posts[iter].user);
+          console.log('FINISHED FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('FILLING USER DATA');
+          DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
+        },
+        error1 => console.log('fail FETCHING OWNER'));
 
     }
 
