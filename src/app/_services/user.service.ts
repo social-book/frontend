@@ -10,13 +10,14 @@ export class UserService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'my-auth-token'
+      'Authorization': 'my-auth-token',
+      'Access-Control-Allow-Origin': '*'
     }),
     withCredentials: true
   };
 
 
-  log(str){
+  log(str) {
     console.log('calling resource: ', str);
   }
 
@@ -25,7 +26,7 @@ export class UserService {
 
   getAll() {
     const path = `${environment.apiUrl}/${environment.user_path}`;
-    this.log(path)
+    this.log(path);
     return this.http.get<User[]>(path);
   }
 
@@ -47,24 +48,43 @@ export class UserService {
   getFriends(id: number) {
     //  return this.http.get<User[]>(`${environment.apiUrl}/${environment.user_path}/${id}/friends`);
     const path = `${environment.apiUrl}/${environment.user_path}/${id}/friends`;
-    this.log(path)
+    this.log(path);
     return this.http.get<User[]>(path);
   }
 
   mockFriends() {
     const path = `https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`;
-    this.log(path)
+    this.log(path);
     return this.http.get<User[]>(path);
   }
 
 
   mockOfRealData() {
     const path = `http://77.111.11.122/endpointmocks/users/`;
-    this.log(path)
+    this.log(path);
+
+    console.log('HELLAAAAAW', new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Accept': 'text/html',
+        'Content-Type': 'text/plain',
+        'Upgrade-Insecure-Requests': '1'
+        /*'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+          */
+      }
+    ).get('Content-Type'));
+
     return this.http.get(path, {
         headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Accept': 'text/html',
+            'Content-Type': 'text/plain',
+            'Upgrade-Insecure-Requests': '1'
+            /*'Accept': 'application/json',
+              'Access-Control-Allow-Origin': '*'
+              */
           }
         )
       }
@@ -73,19 +93,19 @@ export class UserService {
 
   getById(id: number) {
     const path = `${environment.apiUrl}/${environment.user_path}`;
-    this.log(path)
+    this.log(path);
     return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
   }
 
   getByName(name: string) {
     const path = `${environment.apiUrl}/${environment.user_path}`;
-    this.log(path)
+    this.log(path);
     return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
   }
 
   mockDefault() {
     const path = 'https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock';
-    this.log(path)
+    this.log(path);
     return this.http.get(path);
   }
 

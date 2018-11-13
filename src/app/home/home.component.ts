@@ -151,9 +151,7 @@ export class HomeComponent implements OnInit {
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
           for (let k = 0; k < 4; k++) {
-            this.postImages[i][k] = new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
-              't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
-              'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k);
+            this.postImages[i][k] = new PostImg('https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg', k);
             /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
               't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
               'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/

@@ -1,0 +1,9 @@
+to remove all old containers:
+sudo docker container rm $(sudo docker ps -a -q)
+
+to build image in ~/Documents/git/XDOCKERFE:
+sudo docker image build -t my-angular-app .
+
+to run:
+sudo docker run -p 8888:80 my-angular-app
+

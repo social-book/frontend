@@ -10,6 +10,9 @@ import {map} from 'rxjs/operators';
 })
 export class ViewImageComponent implements OnInit {
 
+  public likenum = 0;
+  public commentMsg = 'cyka';
+
   constructor(route: ActivatedRoute) {
     const id: Observable<string> = route.params.pipe(map(p => p.id));
     const url: Observable<string> = route.url.pipe(map(segments => segments.join('')));

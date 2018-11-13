@@ -95,3 +95,28 @@ body {
   display: inline-block;
   border: none;
 }
+
+.inheritsize {
+  height: inherit;
+  width: inherit
+}
+
+.postDivision{
+  height: 600px;
+  width: inherit
+}
+
+.floating {
+  float: left;
+}
+
+.size128 {
+  width: 128px;
+  height: 128px
+}
+
+.namedata {
+  width: 128px;
+  height: 602px;
+  float: left;
+}
