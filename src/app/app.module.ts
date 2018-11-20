@@ -21,6 +21,7 @@ import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.com
 import {AlbumService} from './_services/album.service';
 import {SharedDataService} from './shared-data.service';
 import {ViewImageComponent} from './view-image/view-image.component';
+import {CommentService} from './_services/comment.service';
 
 ;
 
@@ -52,6 +53,7 @@ import {ViewImageComponent} from './view-image/view-image.component';
     UserService,
     AlbumService,
     SharedDataService,
+    CommentService
     /*{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}, //keep refreshing
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},*/
 

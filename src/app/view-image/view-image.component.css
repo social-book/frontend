@@ -21,3 +21,12 @@
   height: inherit;
 }
 
+.commentDiv{
+  height: 128px;
+  background-color: #ffffff;
+  margin-top: 8px;
+}
+
+.commentValue{
+  vertical-align: middle;
+}

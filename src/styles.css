@@ -120,3 +120,17 @@ body {
   height: 602px;
   float: left;
 }
+
+.inheritSize {
+  height: inherit;
+  width: inherit;
+}
+
+.inheritwidth{
+  width: inherit;
+}
+
+.inheritheight{
+  height: inherit;
+}
+
