@@ -3,7 +3,7 @@
   <app-sidebar></app-sidebar>
   <div class="padding" id="content">
     <div>
-      <img src="">
+      <img style="width: 680px; height: auto;" src="https://www.gannett-cdn.com/-mm-/cdeb9a9e093b3172aa58ea309e74edcf80bf651f/c=0-77-2911-1722/local/-/media/2016/05/29/Cincinnati/Cincinnati/636001135964333349-Harambe2.jpg?width=3200&height=1680&fit=crop">
     </div>
     <div class="reactionsection">
       <div class="likesection">
@@ -11,13 +11,19 @@
         <button class="sbcolor bold" type="button">LIKE</button>
       </div>
       <div class="commentsection">
-        <div class = "specificcoment">
-          <p>{{commentMsg}}</p>
+        <div class="commentDiv" *ngFor="let comment of specificComments" style="height: 128px">
+          <img class="size128 floating" src="{{comment.imgRef}}">
+          <div class="commentValue floating inheritSize">
+            <p style="font-weight: bold; font-family: arial">{{comment.userName}}</p>
+            <p class="commentValue">{{comment.commentMsg}}</p>
+          </div>
         </div>
       </div>
-      <div class="writecomment">
-        <input class="inheritwidth">
-        <button class="sbcolor bold floating" type="button">POST COMMENT</button>
+      <div style="margin-top: 8px;width: inherit; height: 400px" class="writecomment">
+        <p style="font-weight: bold">Write your comment</p>
+        <input style="width: 800px; height: 360px">
+        <br>
+        <button class="sbcolor bold" type="button">POST COMMENT</button>
       </div>
     </div>
   </div>
