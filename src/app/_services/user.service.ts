@@ -123,16 +123,16 @@ export class UserService {
 
   /* duplicate */
 
-  /*
+
   login(user: User) {
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/login`, {
       'username': user.username,
       'password': user.password
     });
-  }*/
+  }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/${environment.user_path}/register`, user);
+    return this.http.post(`${environment.apiUrl}${environment.user_path}/register`, user);
   }
 
   /*

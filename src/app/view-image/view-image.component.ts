@@ -29,6 +29,8 @@ export class ViewImageComponent implements OnInit {
     mock.subscribe(data => console.log(data));*/
 
     this.commentService.getCommentForPost().subscribe(data => this.specificComments = data);
+    this.commentService.getLikesForPost().subscribe(data => this.likenum = data.count);
+    this.commentService.getMock().subscribe(data => console.log(data));
 
   }
 

@@ -16,7 +16,7 @@ export class AuthenticationService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json',
-                'Authorization': 'my-auth-token'
+                'Access-Control-Allow-Origin': '*'
               }),
               body: {
                 username: username,
@@ -25,8 +25,7 @@ export class AuthenticationService {
         };
 
         // { username: username, password: password }
-        return this.http.post<any>(`${environment.apiUrl}/
-        ${environment.user_path}/login`,
+        return this.http.post<any>(`${environment.apiUrl}/${environment.user_path}/login`,
         httpOptions
         )
             .pipe(map(user => {

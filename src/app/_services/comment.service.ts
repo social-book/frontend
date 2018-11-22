@@ -10,6 +10,22 @@ export class CommentService {
   }
 
   getCommentForPost() {
-    return this.http.get<Comment[]>(`http://localhost:3000/commenForPost`);
+    return this.http.get<Comment[]>(`http://localhost:3000/commentsForPost`);
   }
+
+
+  getMock() {
+    return this.http.get(`http://77.111.11.122/socialbook/v1/user-service/users/v1/users`);
+  }
+
+
+  getLikesForPost() {
+    return this.http.get<LikeNumber>(`http://localhost:3000/likesForPost`);
+  }
+
+}
+
+export class LikeNumber {
+  count: number;
+  imageId: number;
 }

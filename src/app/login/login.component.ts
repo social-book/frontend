@@ -73,12 +73,12 @@ export class LoginComponent implements OnInit {
 
 
     this.loading = true;
-    this.authenticationService.loginMockToBaseUrl(this.f.username.value, this.f.password.value)
+    this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
           console.log(this.returnUrl);
-          console.log(stringify(data) + ' helloworld');
+          console.log(stringify(data) + ' helloworldSucess ');
           localStorage.setItem('currentUser', JSON.stringify(data));
           console.log(localStorage.getItem('currentUser'));
           this.sd.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log(this.returnUrl);
-          console.log(error + ' helloworld');
+          console.log(JSON.stringify(error) + ' helloworld');
           this.alertService.error(error);
           this.loading = false;
         });
@@ -95,6 +95,7 @@ export class LoginComponent implements OnInit {
     ///////
 
 
+    /*
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
@@ -109,7 +110,7 @@ export class LoginComponent implements OnInit {
           console.log(error + ' helloworld');
           this.alertService.error(error);
           this.loading = false;
-        });
+        });*/
   }
 
   // mock
