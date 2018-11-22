@@ -40,6 +40,11 @@ export class AlbumService {
     return this.http.get<Album[]>(`${environment.apiUrl}/${environment.album_path}/${id}`);
   }
 
+
+  getfirendAlbumsMock(id: number) {
+    return this.http.get<Album[]>('http://localhost:3000/images');
+  }
+
   /*
 
   getByName(name: string) {

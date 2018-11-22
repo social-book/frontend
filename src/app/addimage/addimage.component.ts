@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {SharedDataService} from '../shared-data.service';
+import {User} from '../_models';
+import {Album} from '../_models/album';
+import {AlbumService} from '../_services/album.service';
 
 @Component({
   selector: 'app-addimage',
@@ -9,11 +12,19 @@ import {SharedDataService} from '../shared-data.service';
 })
 export class AddimageComponent implements OnInit {
 
+  user: User;
+  album: Album;
   files: File[];
+  myAlbums: Album[];
   params: HttpParams;
 
-  constructor(private http: HttpClient, public sharedData: SharedDataService) {
+  constructor(private http: HttpClient, public sharedData: SharedDataService, public albumService: AlbumService) {
     console.log(this.sharedData.user);
+
+    this.user = this.sharedData.getLoggedInUser();
+
+    // TODO //albumService.getfirendAlbumsMock(this.user.userId).subscribe(data => this.myAlbums = data);
+
   }
 
   onChange(event: any, input: any) {
@@ -75,7 +86,8 @@ export class AddimageComponent implements OnInit {
 
     console.log(formData.get('1'));
 
-    this.http.post<FormData>('http://localhost:8082/images', formData, httpOptions).subscribe(
+    this.http.post<FormData>('http://159.122.186.89:31175/images?albumId=' +
+      this.album.album_id + '&userId=' + this.user.userId, formData, httpOptions).subscribe(
       (r) => {
         console.log('got r', r, ' : ', formData);
       },

@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     this.user = this.sharedData.getLoggedInUser();
     console.log(this.user);
 
-    this.userService.mockFriends().subscribe( data => this.friends = data);
+    this.userService.getFriends(this.user.userId).subscribe( data => this.friends = data);
 
     // this.albumService.getById(user.userId); TODO <-
     this.albumService.getAllMock().subscribe( data => this.albums = data);

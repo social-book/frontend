@@ -1,30 +1,35 @@
 <div id="container">
-    <app-sidebar></app-sidebar>
-    <div class="padding" id="content">
-      <ul style="margin-bottom:25px;">
-          <li style="background-color:#289b1b;" (click)="xor1()"><p>Create album</p></li>
-          <li style="background-color:#289b1b;" (click)="xor2()"><p>Post images to an album</p></li>
-      </ul>
+  <app-sidebar></app-sidebar>
+  <div class="padding" id="content">
+    <ul style="margin-bottom:25px;">
+      <li style="background-color:#289b1b;" (click)="xor1()"><p>Create album</p></li>
+      <li style="background-color:#289b1b;" (click)="xor2()"><p>Post images to an album</p></li>
+    </ul>
 
-      <div id="sa" hidden=true>
-          <p>Select album</p>
-          <select>
-              <option *ngFor="let post of files">TODO</option>
-          </select>
-        </div>
-      <div id="ca" hidden=false>
-        <form>
+    <div id="sa" hidden=true>
+      <p>Select album</p>
+      <select id="selectedAlbum">
+        <option *ngFor="let post of myAlbums">
+          <div>
+            <p>{{post.album_title}}</p>
+            <p hidden="true" id="{{post.album_title}}">{{post.albumId}}</p>
+          </div>
+        </option>
+      </select>
+    </div>
+    <div id="ca" hidden=false>
+      <form>
         <p>Name your album</p>
         <input style="width: 100%">
-          <button type="submit">Create</button>
-        </form>
-      </div>
-      <div id="uploader" hidden="true">
-        <p>Choose images</p>
-        <input type="file" multiple (change)="onChange($event, showFileNames)" />
-        <input #showFileNames />
-        <button (click)="onUpload()">Upload!</button>
-      </div>
-      <router-outlet></router-outlet>
+        <button type="submit">Create</button>
+      </form>
     </div>
+    <div id="uploader" hidden="true">
+      <p>Choose images</p>
+      <input type="file" multiple (change)="onChange($event, showFileNames)"/>
+      <input #showFileNames/>
+      <button (click)="onUpload()">Upload!</button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
