@@ -4,6 +4,7 @@ import {SharedDataService} from '../shared-data.service';
 import {User} from '../_models';
 import {Album} from '../_models/album';
 import {AlbumService} from '../_services/album.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-addimage',
@@ -22,7 +23,9 @@ export class AddimageComponent implements OnInit {
     console.log(this.sharedData.user);
 
     this.user = this.sharedData.getLoggedInUser();
+    // albumService.getfirendAlbumsMock(this.user.userId).subscribe(data => this.myAlbums = data);
 
+    albumService.getAllMock().subscribe(data => this.myAlbums = data);
     // TODO //albumService.getfirendAlbumsMock(this.user.userId).subscribe(data => this.myAlbums = data);
 
   }
@@ -84,6 +87,16 @@ export class AddimageComponent implements OnInit {
     formData.append('1', this.files[0], this.files[0].name);
 
 
+    this.myAlbums.forEach(element => {
+
+      const e = <HTMLSelectElement>document.getElementById('selectedAlbum');
+      const val = e.options[e.selectedIndex].firstElementChild.firstElementChild.innerHTML;
+
+      if (+document.getElementById(val).innerHTML === element.album_id) {
+        this.album = element;
+      }
+    });
+
     console.log(formData.get('1'));
 
     this.http.post<FormData>('http://159.122.186.89:31175/images?albumId=' +
@@ -97,6 +110,7 @@ export class AddimageComponent implements OnInit {
     );
 
 
+    /*
     // ?albumId=1&userId=1
     this.http.post('http://localhost:8082/images', formData).subscribe(
       (r) => {
@@ -134,4 +148,11 @@ export class AddimageComponent implements OnInit {
   ngOnInit() {
   }
 
+  onCreateAlbum() {
+
+    const name = document.getElementById('albumName').innerText;
+    const id = this.sharedData.getLoggedInUser().userId;
+
+    return this.http.post(`${environment.apiUrl}/${environment.album_path}/${id}/${name}`, null);
+  }
 }

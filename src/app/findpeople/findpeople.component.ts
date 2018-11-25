@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {User} from '../_models';
 import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
-import {first} from 'rxjs/operators';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-findpeople',
@@ -15,13 +12,24 @@ export class FindpeopleComponent implements OnInit {
 
   // users$: Observable<User[]>;
   addedUsers: User[];
+  ignoredIds: number[];
   avilableToAdd: User[];
-  availableUsers: Array<User>;
+
+  // availableUsers: Array<User>;
 
   constructor(protected userService: UserService, public sd: SharedDataService) {
 
-    this.userService.getFriends(sd.getLoggedInUser().userId).subscribe(data => this.addedUsers = data);
+    this.userService.getFriends(sd.getLoggedInUser().userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
+    this.ignoredIds.push(sd.getLoggedInUser().userId);
 
+    userService.getAll().subscribe(data =>
+      data.forEach(item => {
+          if (!this.ignoredIds.includes(item.userId)) {
+            this.avilableToAdd.push(item);
+          }
+        }
+      ))
+    ;
     /*
     this.userService.getAll().subscribe(data => data.forEach(function (item) {
 

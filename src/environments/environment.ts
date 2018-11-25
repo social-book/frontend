@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://159.122.186.89:31340/v1',
+  mockUrl: 'http://localhost:3000',
   user_path: 'users',
   album_path: 'albums',
   comments_path: 'comments',

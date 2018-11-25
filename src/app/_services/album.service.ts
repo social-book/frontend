@@ -42,7 +42,7 @@ export class AlbumService {
 
 
   getfirendAlbumsMock(id: number) {
-    return this.http.get<Album[]>('http://localhost:3000/images');
+    return this.http.get<Album[]>('http://localhost:3000/friendalbs');
   }
 
   /*

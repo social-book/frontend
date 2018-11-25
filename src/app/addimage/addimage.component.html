@@ -12,17 +12,20 @@
         <option *ngFor="let post of myAlbums">
           <div>
             <p>{{post.album_title}}</p>
-            <p hidden="true" id="{{post.album_title}}">{{post.albumId}}</p>
+            <p hidden="true" id="{{post.album_title}}">{{post.album_id}}</p>
           </div>
         </option>
       </select>
     </div>
     <div id="ca" hidden=false>
-      <form>
+      <!--<form action="{{environment.apiUrl}}/{{environment.user_path}}">
         <p>Name your album</p>
         <input style="width: 100%">
         <button type="submit">Create</button>
-      </form>
+      </form>-->
+      <p>Name your album</p>
+      <input id="albumName" style="width: 100%">
+      <button (click)="onCreateAlbum()">Create</button>
     </div>
     <div id="uploader" hidden="true">
       <p>Choose images</p>

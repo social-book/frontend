@@ -53,23 +53,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    // this.postData('https://jsonplaceholder.typicode.com/posts', [['Content-Type', 'application/json']], [['name', 'miha']]);
-    /*
-
-    //////GET/////
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('projectid', this.id);
-    const params = new URLSearchParams();
-    params.append('ax', this.someParamValue)
-    const collection: Observable<String> = this.http.get('https://jsonplaceholder.typicode.com/posts', { headers: headers, search: params })
-    collection.forEach(key => console.log(key));
-    */
-
-    // console.log(this.returnUrl);
-
-
-///////////////////// MOCK
 
 
     this.loading = true;

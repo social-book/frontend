@@ -39,6 +39,8 @@ export class HomeComponent implements OnInit {
 
     console.log('constructed home');
 
+    /*
+
     // const friends$ = this.userService.mockFriends();
 
     this.userService.mockDefault().pipe(first()).subscribe(data => console.log(data));
@@ -50,7 +52,8 @@ export class HomeComponent implements OnInit {
       },
       error1 => console.log('bojo cke'));
 
-    /* legacy code x11111 */
+
+    */
   }
 
 
@@ -63,13 +66,13 @@ export class HomeComponent implements OnInit {
     this.id4 = '/assets/fjords.jpg';
     // this.posts.push(new PostImg());
 
-    const friends$ = this.userService.mockFriends();
+    // const friends$ = this.userService.mockFriends();
 
     // this.call1(friends$);
 
     const listContainer = document.getElementById('listContainer');
 
-    this.callWithComponents1(friends$, listContainer);
+    /////////////////////////////////////// this.callWithComponents1(friends$, listContainer);
 
     /*
     const listContainer = document.getElementById('listContainer');
@@ -173,7 +176,7 @@ export class HomeComponent implements OnInit {
     console.log('servis: ', this.albumService);
     console.log('servis: ', this.userService);
     for (let iter = 0; iter < this.posts.length; iter++) {
-      this.userService.mockFriends().pipe(first()).subscribe(podatek => {
+      /*this.userService.mockFriends().pipe(first()).subscribe(podatek => { // TODO
           console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
           console.log('user SYNC ADD');
           console.log('PODATEK[0]   ', podatek[0]);
@@ -184,7 +187,7 @@ export class HomeComponent implements OnInit {
           console.log('FILLING USER DATA');
           DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
         },
-        error1 => console.log('fail FETCHING OWNER'));
+        error1 => console.log('fail FETCHING OWNER'));*/
 
     }
 

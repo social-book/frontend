@@ -52,6 +52,27 @@ export class UserService {
     return this.http.get<User[]>(path);
   }
 
+
+  getById(id: number) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path);
+    return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
+  }
+
+  getByName(name: string) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path);
+    return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
+  }
+
+  /*
+  mockDefault() {
+    const path = 'https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock';
+    this.log(path);
+    return this.http.get(path);
+  }
+
+
   mockFriends() {
     const path = `https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`;
     this.log(path);
@@ -69,9 +90,6 @@ export class UserService {
         'Accept': 'text/html',
         'Content-Type': 'text/plain',
         'Upgrade-Insecure-Requests': '1'
-        /*'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-          */
       }
     ).get('Content-Type'));
 
@@ -82,33 +100,11 @@ export class UserService {
             'Accept': 'text/html',
             'Content-Type': 'text/plain',
             'Upgrade-Insecure-Requests': '1'
-            /*'Accept': 'application/json',
-              'Access-Control-Allow-Origin': '*'
-              */
           }
         )
       }
     );
-  }
-
-  getById(id: number) {
-    const path = `${environment.apiUrl}/${environment.user_path}`;
-    this.log(path);
-    return this.http.get<User>(`${environment.apiUrl}/${environment.user_path}/` + id);
-  }
-
-  getByName(name: string) {
-    const path = `${environment.apiUrl}/${environment.user_path}`;
-    this.log(path);
-    return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
-  }
-
-  mockDefault() {
-    const path = 'https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock';
-    this.log(path);
-    return this.http.get(path);
-  }
-
+  } */
 
   // TODO
   addFriend() {
