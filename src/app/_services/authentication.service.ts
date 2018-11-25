@@ -39,6 +39,35 @@ export class AuthenticationService {
       }));
   }
 
+  getLogin(username: string, password: string) {
+
+    // v primeru zadovoljivega casa dodava se oAuth
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }),
+      body: {
+        username: username,
+        password: password
+      }
+    };
+
+    // { username: username, password: password }
+    return this.http.get<any>(`${environment.apiUrl}/${environment.user_path}/login` + username + 'password' + password,
+      httpOptions
+    )
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+
+        return user;
+      }));
+  }
+
 
   /// http://p04de.mocklab.io/login
 

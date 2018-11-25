@@ -30,7 +30,15 @@ export class SharedDataService {
   }
 
   getLoggedInUser(): User {
-    return JSON.parse(localStorage.getItem('currentUser'));
+    const user = new User();
+    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    user.surname = obj.surname;
+    user.name = obj.name;
+    user.userId = obj.userId;
+    user.imgref = obj.imgref;
+    user.friends = obj.friends;
+    user.username = obj.username;
+    return user;
   }
 
   myMethod(data) {

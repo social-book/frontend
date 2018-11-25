@@ -6,4 +6,5 @@ export class User {
   imgref: string;
   username: string;
   password: string;
+  friends: User[];
 }

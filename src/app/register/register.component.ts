@@ -17,11 +17,12 @@ export class RegisterComponent implements OnInit {
         private userService: UserService,
         private alertService: AlertService) { }
 
-    ngOnInit() {
+    ngOnInit() { // TODO refactor to user
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
+            name: ['', Validators.required],
+            surname: ['', Validators.required],
             username: ['', Validators.required],
+            imgurl: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }

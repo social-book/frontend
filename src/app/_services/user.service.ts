@@ -128,7 +128,7 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}${environment.user_path}/register`, user);
+    return this.http.post(`${environment.apiUrl}/${environment.user_path}/register`, user);
   }
 
   /*

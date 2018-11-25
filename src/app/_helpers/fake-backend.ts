@@ -11,7 +11,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // array in local storage for registered users
-    let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+    const users: any[] = JSON.parse(localStorage.getItem('users')) || [];
 
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
@@ -19,18 +19,19 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       // authenticate
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
         // find if any user matches login credentials
-        let filteredUsers = users.filter(user => {
+        const filteredUsers = users.filter(user => {
           return user.username === request.body.username && user.password === request.body.password;
         });
 
         if (filteredUsers.length) {
           // if login details are valid return 200 OK with user details and fake jwt token
-          let user = filteredUsers[0];
-          let body = {
+          const user = filteredUsers[0];
+          const body = {
             id: user.id,
             username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            name: user.name,
+            surname: user.surname,
+            imgurl: user.imgurl,
             token: 'fake-jwt-token'
           };
 

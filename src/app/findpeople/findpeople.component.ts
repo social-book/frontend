@@ -14,13 +14,17 @@ export class FindpeopleComponent implements OnInit {
   addedUsers: User[];
   ignoredIds: number[];
   avilableToAdd: User[];
+  user: User;
 
   // availableUsers: Array<User>;
 
   constructor(protected userService: UserService, public sd: SharedDataService) {
 
-    this.userService.getFriends(sd.getLoggedInUser().userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
-    this.ignoredIds.push(sd.getLoggedInUser().userId);
+
+    this.user = sd.getLoggedInUser(); // TODO this returns a function? WHYYYYY...
+
+    this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
+    this.ignoredIds.push(this.user.userId);
 
     userService.getAll().subscribe(data =>
       data.forEach(item => {

@@ -8,6 +8,7 @@ import {AlertService, AuthenticationService} from '../_services';
 import {Observable} from 'rxjs';
 import {stringify} from 'querystring';
 import {SharedDataService} from '../shared-data.service';
+import {User} from '../_models';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -37,6 +38,18 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+
+
+    /// MOcKKKKKKKKKKKK
+    const user = new User();
+    user.userId = 1;
+    user.friends = new Array<User>();
+    user.imgref = 'ggg';
+    user.name = 'Mikhail';
+    user.surname = 'Jurjevič Lermontov';
+
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
   }
 
   // convenience getter for easy access to form fields
@@ -56,6 +69,28 @@ export class LoginComponent implements OnInit {
 
 
     this.loading = true;
+
+    this.authenticationService.getLogin(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(this.returnUrl);
+          console.log(stringify(data) + ' helloworldSucess ');
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          console.log(localStorage.getItem('currentUser'));
+          this.sd.user = JSON.parse(localStorage.getItem('currentUser'));
+          this.router.navigate([this.returnUrl + '/home']);
+        },
+        error => {
+          console.log(this.returnUrl);
+          console.log(JSON.stringify(error) + ' helloworld');
+          this.alertService.error(error);
+          this.loading = false;
+        });
+
+
+    /*
+    // TODO USE THIS
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -76,7 +111,7 @@ export class LoginComponent implements OnInit {
 
 
     ///////
-
+    */
 
     /*
     this.loading = true;
