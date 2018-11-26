@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
     user.imgref = 'ggg';
     user.name = 'Mikhail';
     user.surname = 'Jurjevič Lermontov';
+    user.username = 'shc';
 
     localStorage.setItem('currentUser', JSON.stringify(user));
 

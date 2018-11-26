@@ -21,7 +21,8 @@ import {MaintainancemodeComponent} from './maintainancemode/maintainancemode.com
 import {AlbumService} from './_services/album.service';
 import {SharedDataService} from './shared-data.service';
 import {ViewImageComponent} from './view-image/view-image.component';
-import {CommentService} from './_services/comment.service';
+import {CommentService} from './_services/comment.service';;
+import { TestRequestComponent } from './test-request/test-request.component'
 
 ;
 
@@ -44,7 +45,8 @@ import {CommentService} from './_services/comment.service';
     FindpeopleComponent,
     AddimageComponent,
     MaintainancemodeComponent,
-    ViewImageComponent
+    ViewImageComponent,
+    TestRequestComponent
   ],
   providers: [
     AuthGuard,

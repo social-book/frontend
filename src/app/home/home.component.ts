@@ -8,6 +8,7 @@ import {PostImg} from '../_models/postImg';
 import {AlbumService} from '../_services/album.service';
 import {AlbumMeta} from '../_models/albumMeta';
 import {DomBuilderForHomeComponent} from './DomBuilder';
+import {Observable, of} from 'rxjs';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   public id2: string;
   public id3: string;
   public id4: string;
+  public user: User;
 
   constructor(private userService: UserService, public sharedData: SharedDataService, private albumService: AlbumService) {
 
@@ -66,13 +68,16 @@ export class HomeComponent implements OnInit {
     this.id4 = '/assets/fjords.jpg';
     // this.posts.push(new PostImg());
 
-    // const friends$ = this.userService.mockFriends();
+
+    this.user = this.sharedData.getLoggedInUser(); // this workds, but friends endpoint doesn't exist, use user and parse friends
+
+    const friends$ = of(this.user.friends);
 
     // this.call1(friends$);
 
     const listContainer = document.getElementById('listContainer');
 
-    /////////////////////////////////////// this.callWithComponents1(friends$, listContainer);
+    this.callWithComponents1(friends$, listContainer);
 
     /*
     const listContainer = document.getElementById('listContainer');

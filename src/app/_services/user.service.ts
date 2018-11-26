@@ -30,6 +30,13 @@ export class UserService {
     return this.http.get<User[]>(path);
   }
 
+  testUserCall() {
+    console.log('CALL TEST USER CALL');
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path);
+    return this.http.get<User[]>(path, this.httpOptions);
+  }
+
 
   /*
   getAllMock() {

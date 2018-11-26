@@ -31,7 +31,7 @@ export class SharedDataService {
 
   getLoggedInUser(): User {
     const user = new User();
-    const obj = JSON.parse(localStorage.getItem('currentUser'));
+    const obj: User = JSON.parse(localStorage.getItem('currentUser'));
     user.surname = obj.surname;
     user.name = obj.name;
     user.userId = obj.userId;

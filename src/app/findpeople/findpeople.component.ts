@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../_models';
 import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
+import {ignore} from 'selenium-webdriver/testing';
 
 @Component({
   selector: 'app-findpeople',
@@ -20,10 +21,14 @@ export class FindpeopleComponent implements OnInit {
 
   constructor(protected userService: UserService, public sd: SharedDataService) {
 
+    this.ignoredIds = new Array<number>();
 
-    this.user = sd.getLoggedInUser(); // TODO this returns a function? WHYYYYY...
+    this.user = sd.getLoggedInUser(); // this workds, but friends endpoitn doesn't exist, use user and parse friends
 
-    this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
+
+    this.userService.getById(this.user.userId).subscribe(data => data.friends.forEach(item => this.ignoredIds.push(item.userId)));
+
+    // this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
     this.ignoredIds.push(this.user.userId);
 
     userService.getAll().subscribe(data =>
