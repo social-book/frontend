@@ -12,6 +12,11 @@ export class AuthenticationService {
 
   login(username: string, password: string) {
 
+    const userObj = {
+      'username': username,
+      'password': password
+    };
+
     // v primeru zadovoljivega casa dodava se oAuth
     const httpOptions = {
       headers: new HttpHeaders({
@@ -26,7 +31,7 @@ export class AuthenticationService {
 
     // { username: username, password: password }
     return this.http.post<any>(`${environment.apiUrl}/${environment.user_path}/login`,
-      httpOptions
+      userObj
     )
       .pipe(map(user => {
         // login successful if there's a jwt token in the response

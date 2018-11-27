@@ -26,11 +26,11 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="imgurl" for="imgurl">Profile Image Url</label>
-      <input type="text" formControlName="imgurl" class="form-control registerhalf"
-             [ngClass]="{ 'is-invalid': submitted && f.imgurl.errors }"/>
-      <div *ngIf="submitted && f.imgurl.errors" class="invalid-feedback">
-        <div *ngIf="f.imgurl.errors.required">Profile Image Url is required</div>
+      <label class="registerhalf" for="imgref">Profile Image Url</label>
+      <input type="text" formControlName="imgref" class="form-control registerhalf"
+             [ngClass]="{ 'is-invalid': submitted && f.imgref.errors }"/>
+      <div *ngIf="submitted && f.imgref.errors" class="invalid-feedback">
+        <div *ngIf="f.imgref.errors.required">Profile Image Url is required</div>
       </div>
     </div>
     <div class="form-group">

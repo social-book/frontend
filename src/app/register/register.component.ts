@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
             name: ['', Validators.required],
             surname: ['', Validators.required],
             username: ['', Validators.required],
-            imgurl: ['', Validators.required],
+            imgref: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
