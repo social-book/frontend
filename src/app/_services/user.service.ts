@@ -38,6 +38,13 @@ export class UserService {
   }
 
 
+  testUserCall1() {
+    console.log('CALL TEST USER CALL');
+    const path = `http://77.111.11.122/socialbook/user-service/v1/users/`;
+    this.log(path);
+    return this.http.get<User[]>(path, this.httpOptions);
+  }
+
   /*
   getAllMock() {
     const link = 'http://localhost:3000/allusers';

@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
 
+    /*
     this.authenticationService.getLogin(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -89,8 +90,9 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         });
 
+*/
 
-    /*
+
     // TODO USE THIS
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
@@ -112,7 +114,7 @@ export class LoginComponent implements OnInit {
 
 
     ///////
-    */
+
 
     /*
     this.loading = true;
