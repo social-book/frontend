@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../_models';
 import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
-import {ignore} from 'selenium-webdriver/testing';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-findpeople',
@@ -16,29 +16,46 @@ export class FindpeopleComponent implements OnInit {
   ignoredIds: number[];
   avilableToAdd: User[];
   user: User;
+  user$: Observable<User>;
 
   // availableUsers: Array<User>;
 
   constructor(protected userService: UserService, public sd: SharedDataService) {
 
-    this.ignoredIds = new Array<number>();
+    /*
+    this.ignoredIds = [];
 
     this.user = sd.getLoggedInUser(); // this workds, but friends endpoitn doesn't exist, use user and parse friends
 
 
-    this.userService.getById(this.user.userId).subscribe(data => data.friends.forEach(item => this.ignoredIds.push(item.userId)));
+    this.user$ = this.userService.getById(this.user.userId);
+
+    const _this = this;
+
+    this.user$.subscribe(data => {
+      data.friends.forEach(item => {
+        _this.ignoredIds.push(item.userId);
+        console.log(item);
+      });
+      console.log(data);
+
+      const _to = _this;
+
+      userService.getAll().subscribe(dat =>
+        dat.forEach(item => {
+            if (!this.ignoredIds.includes(item.userId)) {
+              _to.avilableToAdd.push(item);
+            }
+          }
+        ))
+      ;
+
+    });
 
     // this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
     this.ignoredIds.push(this.user.userId);
 
-    userService.getAll().subscribe(data =>
-      data.forEach(item => {
-          if (!this.ignoredIds.includes(item.userId)) {
-            this.avilableToAdd.push(item);
-          }
-        }
-      ))
-    ;
+
     /*
     this.userService.getAll().subscribe(data => data.forEach(function (item) {
 
@@ -74,7 +91,43 @@ export class FindpeopleComponent implements OnInit {
 
   }
 
+  getInstance() {
+    return this;
+  }
+
   ngOnInit() {
+
+
+    this.ignoredIds = [];
+
+    this.user = this.sd.getLoggedInUser(); // this workds, but friends endpoitn doesn't exist, use user and parse friends
+
+    this.user$ = this.userService.getById(this.user.userId);
+
+
+    this.user$.subscribe(data => {
+      data.friends.forEach(item => {
+        this.ignoredIds.push(item.userId);
+        console.log(item);
+      });
+      console.log(data);
+
+
+      this.userService.getAll().subscribe(dat =>
+        dat.forEach(item => {
+            if (!this.ignoredIds.includes(item.userId)) {
+              this.avilableToAdd.push(item);
+            }
+          }
+        ))
+      ;
+
+    });
+
+    // this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
+    this.ignoredIds.push(this.user.userId);
+
+
   }
 
 }

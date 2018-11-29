@@ -79,55 +79,19 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/${environment.user_path}/name/` + name);
   }
 
-  /*
-  mockDefault() {
-    const path = 'https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock';
-    this.log(path);
-    return this.http.get(path);
-  }
-
-
-  mockFriends() {
-    const path = `https://my-json-server.typicode.com/mihastele/myJsonMock/friendsMock`;
-    this.log(path);
-    return this.http.get<User[]>(path);
-  }
-
-
-  mockOfRealData() {
-    const path = `http://77.111.11.122/endpointmocks/users/`;
-    this.log(path);
-
-    console.log('HELLAAAAAW', new HttpHeaders({
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Accept': 'text/html',
-        'Content-Type': 'text/plain',
-        'Upgrade-Insecure-Requests': '1'
-      }
-    ).get('Content-Type'));
-
-    return this.http.get(path, {
-        headers: new HttpHeaders({
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-            'Accept': 'text/html',
-            'Content-Type': 'text/plain',
-            'Upgrade-Insecure-Requests': '1'
-          }
-        )
-      }
-    );
-  } */
 
   // TODO
-  addFriend() {
-
+  addFriend(who: string, target: string) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path);
+    return this.http.put(`${environment.apiUrl}/${environment.user_path}/add/` + who + '/' + target, null);
   }
 
 
-  removeFriend() {
-
+  removeFriend(who: string, target: string) {
+    const path = `${environment.apiUrl}/${environment.user_path}`;
+    this.log(path);
+    return this.http.put(`${environment.apiUrl}/${environment.user_path}/add/` + who + '/' + target, null);
   }
 
 
