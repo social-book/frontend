@@ -99,13 +99,36 @@ export class FindpeopleComponent implements OnInit {
 
 
     this.ignoredIds = [];
+    this.avilableToAdd = [];
 
     this.user = this.sd.getLoggedInUser(); // this workds, but friends endpoitn doesn't exist, use user and parse friends
 
     this.user$ = this.userService.getById(this.user.userId);
 
 
-    this.user$.subscribe(data => {
+    // workaround
+
+    this.user$.subscribe((function (data) {
+      data.friends.forEach(item => {
+        this.ignoredIds.push(item.userId);
+        console.log(item);
+      });
+      console.log(data);
+
+
+      this.userService.getAll().subscribe((function (dat) {
+          dat.forEach((function (item) {
+            if (!this.ignoredIds.includes(item.userId)) {
+              this.avilableToAdd.push(item);
+            }
+          }).bind(this));
+        }).bind(this)
+      );
+
+    }).bind(this));
+
+
+    /*this.user$.subscribe(data => {
       data.friends.forEach(item => {
         this.ignoredIds.push(item.userId);
         console.log(item);
@@ -119,10 +142,9 @@ export class FindpeopleComponent implements OnInit {
               this.avilableToAdd.push(item);
             }
           }
-        ))
-      ;
+        ));
 
-    });
+    });*/
 
     // this.userService.getFriends(this.user.userId).subscribe(data => data.forEach(item => this.ignoredIds.push(item.userId)));
     this.ignoredIds.push(this.user.userId);
