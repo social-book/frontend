@@ -101,7 +101,7 @@ export class FindpeopleComponent implements OnInit {
     this.ignoredIds = [];
     this.avilableToAdd = [];
 
-    this.user = this.sd.getLoggedInUser(); // this workds, but friends endpoitn doesn't exist, use user and parse friends
+    this.user = this.sd.getLoggedInUser(); // this works, but friends endpoint doesn't exist, use user and parse friends
 
     this.user$ = this.userService.getById(this.user.userId);
 
@@ -152,4 +152,14 @@ export class FindpeopleComponent implements OnInit {
 
   }
 
+  onAdd(userId) {
+
+    this.user = this.sd.getLoggedInUser(); // this works, but friends endpoint doesn't exist, use user and parse friends
+
+    this.userService.addFriend(this.user.userId + '', userId + '');
+
+    window.location.reload(); // refresh
+
+
+  }
 }

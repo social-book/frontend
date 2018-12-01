@@ -82,9 +82,9 @@ export class UserService {
 
   // TODO
   addFriend(who: string, target: string) {
-    const path = `${environment.apiUrl}/${environment.user_path}`;
+    const path = `${environment.apiUrl}/${environment.user_path}/add/` + who + '/' + target;
     this.log(path);
-    return this.http.put(`${environment.apiUrl}/${environment.user_path}/add/` + who + '/' + target, null);
+    return this.http.put(path, null);
   }
 
 
