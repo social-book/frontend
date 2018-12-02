@@ -1,5 +1,4 @@
-﻿// TODO use appropriate parameters...
-export class User {
+﻿export class User {
   userId: number;
   name: string;
   surname: string;

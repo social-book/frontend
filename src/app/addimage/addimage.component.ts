@@ -5,6 +5,7 @@ import {User} from '../_models';
 import {Album} from '../_models/album';
 import {AlbumService} from '../_services/album.service';
 import {environment} from '../../environments/environment';
+import {Category} from '../_models/category';
 
 @Component({
   selector: 'app-addimage',
@@ -18,6 +19,7 @@ export class AddimageComponent implements OnInit {
   files: File[];
   myAlbums: Album[];
   params: HttpParams;
+  categories: Category[];
 
   constructor(private http: HttpClient, public sharedData: SharedDataService, public albumService: AlbumService) {
     console.log(this.sharedData.user);
@@ -99,7 +101,7 @@ export class AddimageComponent implements OnInit {
 
     console.log(formData.get('1'));
 
-    this.http.post<FormData>('http://159.122.186.89:31175/images?albumId=' +
+    this.http.post<FormData>(`${environment.apiImageUrl}` +
       this.album.album_id + '&userId=' + this.user.userId, formData, httpOptions).subscribe(
       (r) => {
         console.log('got r', r, ' : ', formData);
@@ -146,6 +148,7 @@ export class AddimageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.albumService.getCategories().subscribe((data => this.categories = data).bind(this));
   }
 
   onCreateAlbum() {

@@ -1,5 +1,4 @@
-﻿// TODO use appropriate parameters...
-import {User} from './user';
+﻿import {User} from './user';
 
 export class AlbumMeta { //album
   private _album_id: number;

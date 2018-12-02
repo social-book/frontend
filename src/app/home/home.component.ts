@@ -8,7 +8,7 @@ import {PostImg} from '../_models/postImg';
 import {AlbumService} from '../_services/album.service';
 import {AlbumMeta} from '../_models/albumMeta';
 import {DomBuilderForHomeComponent} from './DomBuilder';
-import {Observable, of} from 'rxjs';
+import {of} from 'rxjs';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit {
   callWithComponents2(lc) {
 
     console.log('servis: ', this.albumService);
-    this.albumService.getAllMock().pipe(first()).subscribe(data => {
+    this.albumService.getAll().pipe(first()).subscribe(data => { // TODO fetchi le prijateljeve...
 
         // DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data);
         // console.log(DomBuilderForHomeComponent.liList[0].domElements);
@@ -181,6 +181,24 @@ export class HomeComponent implements OnInit {
     console.log('servis: ', this.albumService);
     console.log('servis: ', this.userService);
     for (let iter = 0; iter < this.posts.length; iter++) {
+
+      this.user.friends.forEach(podatek => { // TODO
+          console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('user SYNC ADD');
+          console.log('PODATEK[0]   ', podatek[0]);
+          this.posts[iter].user = podatek[0];
+          console.log(this.posts[iter]);
+          console.log(this.posts[iter].user);
+          console.log('FINISHED FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('FILLING USER DATA');
+          DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
+        },
+          error1 => {
+            console.log('fail FETCHING OWNER');
+          }
+      );
+
+
       /*this.userService.mockFriends().pipe(first()).subscribe(podatek => { // TODO
           console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
           console.log('user SYNC ADD');

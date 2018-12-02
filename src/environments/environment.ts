@@ -4,15 +4,17 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://159.122.186.89:31340/v1',
+  apiUrl: 'http://159.122.186.89:31340/v1', // user url
+  apiAlbumUrl: 'http://159.122.186.89:31777/v1',
+  apiImageUrl: 'http://159.122.186.89:31175',
   mockUrl: 'http://localhost:3000',
   user_path: 'users',
   album_path: 'albums',
+  category_path: 'categories',
   comments_path: 'comments',
   notfications_path: 'notfications'
 
   /*
-    // comment jewbox
 
     https://my-json-server.typicode.com/mihastele/myJsonMock/
 

@@ -3,6 +3,7 @@ import {User} from '../_models';
 import {UserService} from '../_services';
 import {SharedDataService} from '../shared-data.service';
 import {Observable} from 'rxjs';
+import {Category} from '../_models/category';
 
 @Component({
   selector: 'app-findpeople',
