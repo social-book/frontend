@@ -1,6 +1,6 @@
 ﻿export class Album { // album
-  album_id: number;
-  album_title: string;
-  user_id: number;
-  category_id: number;
+  id: number;
+  title: string;
+  userId: number;
+  category: number;
 }

@@ -90,11 +90,14 @@ export class DomBuilderForHomeComponent {
 
   }
 
-  static fillAlbumData(index, img) {
+  static fillAlbumData(index, img, user, imgId) { // fetch proper image id
 
     // let element = new HTMLElement();
     for (let i = 0; i < img[index].length; i++) {
       this.liList[index].domElements['img' + i].src = img[index][i].imgref;
+      this.liList[index].domElements['img' + i].onclick = function (event) {
+        this.router.navigate([this.returnUrl + '/view?user=' + user + 'id=' + imgId]);
+      }; // connect on click listener
     }
 
   }
