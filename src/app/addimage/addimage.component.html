@@ -26,9 +26,9 @@
       <p>Name your album</p>
       <input id="albumName" style="width: 100%">
       <p style="margin-top: 5px;">Select category</p>
-      <ol id="selCategory">
-        <li *ngFor="let category of categories">{{category.title}}</li>
-      </ol>
+      <select id="selCategory">
+        <option *ngFor="let category of categories">{{category.id}}|{{category.title}}</option>
+      </select>
       <button (click)="onCreateAlbum()">Create</button>
     </div>
     <div id="uploader" hidden="true">

@@ -37,7 +37,7 @@ export class AlbumService {
   }
 
   getByUserId(id: number) {
-    return this.http.get<Album[]>(`${environment.apiUrl}/${environment.album_path}/${id}`);
+    return this.http.get<Album[]>(`${environment.apiAlbumUrl}/${environment.album_path}/${id}`);
   }
 
 

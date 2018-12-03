@@ -1,4 +1,4 @@
-﻿export class Category { // album
+﻿export class Image { // album
   imageName: string;
   imageSrc: string;
 }

@@ -96,7 +96,7 @@ export class DomBuilderForHomeComponent {
     for (let i = 0; i < img[index].length; i++) {
       this.liList[index].domElements['img' + i].src = img[index][i].imgref;
       this.liList[index].domElements['img' + i].onclick = function (event) {
-        this.router.navigate([this.returnUrl + '/view?user=' + user + 'id=' + imgId]);
+        this.router.navigate([this.returnUrl + '/view?user=' + user + 'id=' + imgId]); //TODO
       }; // connect on click listener
     }
 

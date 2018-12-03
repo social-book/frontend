@@ -1,28 +1,39 @@
 ﻿import {User} from './user';
+import {Category} from './category';
+import {Image} from './image';
 
-export class AlbumMeta { //album
-  private _album_id: number;
-  private _album_title: string;
+export class AlbumMeta {
+  private _id: number;
+  private _title: string;
   private _user_id: number;
-  private _category_id: number;
+  private _category: Category;
   private _user: User;
   private _seq_nr: number;
+  private _images: Image[];
 
 
-  get album_id(): number {
-    return this._album_id;
+  get images(): Image[] {
+    return this._images;
   }
 
-  set album_id(value: number) {
-    this._album_id = value;
+  set images(value: Image[]) {
+    this._images = value;
+  }
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
   }
 
   get album_title(): string {
-    return this._album_title;
+    return this._title;
   }
 
   set album_title(value: string) {
-    this._album_title = value;
+    this._title = value;
   }
 
   get user_id(): number {
@@ -33,12 +44,12 @@ export class AlbumMeta { //album
     this._user_id = value;
   }
 
-  get category_id(): number {
-    return this._category_id;
+  get category_id(): Category {
+    return this._category;
   }
 
-  set category_id(value: number) {
-    this._category_id = value;
+  set category_id(value: Category) {
+    this._category = value;
   }
 
   get user(): User {

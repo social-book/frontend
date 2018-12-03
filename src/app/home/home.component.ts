@@ -137,6 +137,9 @@ export class HomeComponent implements OnInit {
         console.log('FETCHING ALBUMS +++++++++++++++++++++++');
         for (let i = 0; i < data.length; i++) {
 
+          if (!this.isFriends(this.user.friends, data[i].userId)) {
+            continue;
+          }
 
           console.log('BUILDING LIST ITEM AND LINKING');
           DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data, i);
@@ -144,10 +147,11 @@ export class HomeComponent implements OnInit {
           console.log(data);
           // this.postsNumber.push(j); // todo delete
           const meta = new AlbumMeta();
-          meta.album_id = data[i].album_id;
-          meta.album_title = data[i].album_title;
-          meta.category_id = data[i].category_id;
-          meta.user_id = data[i].user_id;
+          meta.id = data[i].id;
+          meta.album_title = data[i].title;
+          meta.category_id = data[i].category;
+          meta.user_id = data[i].userId;
+          meta.images = data[i].images;
           meta.seq_nr = i;
           this.posts.push(meta);
           // can be anywhere...
@@ -159,11 +163,11 @@ export class HomeComponent implements OnInit {
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
           for (let k = 0; k < 4; k++) {
-            this.postImages[i][k] = new PostImg('https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg', k);
+            this.postImages[i][k] = new PostImg('http://159.122.186.89:31175' + meta.images[i].imageSrc, k);
             /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
               't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
               'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
-            DomBuilderForHomeComponent.fillAlbumData(i, this.postImages, meta.user_id, meta.seq_nr);
+            DomBuilderForHomeComponent.fillAlbumData(i, this.postImages, meta.user_id, meta.images[i].imageSrc);
           }
         }
 
@@ -193,9 +197,9 @@ export class HomeComponent implements OnInit {
           console.log('FILLING USER DATA');
           DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
         },
-          error1 => {
-            console.log('fail FETCHING OWNER');
-          }
+        error1 => {
+          console.log('fail FETCHING OWNER');
+        }
       );
 
 
@@ -214,6 +218,16 @@ export class HomeComponent implements OnInit {
 
     }
 
+  }
+
+
+  isFriends(friends: User[], userId): boolean {
+    let bool = false;
+    friends.forEach(data =>
+      bool = bool || data.userId === userId
+    );
+
+    return bool;
   }
 
 

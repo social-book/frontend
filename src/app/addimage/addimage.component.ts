@@ -27,7 +27,7 @@ export class AddimageComponent implements OnInit {
     this.user = this.sharedData.getLoggedInUser();
     // albumService.getfirendAlbumsMock(this.user.userId).subscribe(data => this.myAlbums = data);
 
-    albumService.getAllMock().subscribe(data => this.myAlbums = data);
+    albumService.getByUserId(this.user.userId).subscribe((data => this.myAlbums = data).bind(this));
     // TODO //albumService.getfirendAlbumsMock(this.user.userId).subscribe(data => this.myAlbums = data);
 
   }
@@ -94,7 +94,7 @@ export class AddimageComponent implements OnInit {
       const e = <HTMLSelectElement>document.getElementById('selectedAlbum');
       const val = e.options[e.selectedIndex].firstElementChild.firstElementChild.innerHTML;
 
-      if (+document.getElementById(val).innerHTML === element.album_id) {
+      if (+document.getElementById(val).innerHTML === element.id) {
         this.album = element;
       }
     });
@@ -102,7 +102,7 @@ export class AddimageComponent implements OnInit {
     console.log(formData.get('1'));
 
     this.http.post<FormData>(`${environment.apiImageUrl}` +
-      this.album.album_id + '&userId=' + this.user.userId, formData, httpOptions).subscribe(
+      this.album.id + '&userId=' + this.user.userId, formData, httpOptions).subscribe(
       (r) => {
         console.log('got r', r, ' : ', formData);
       },
@@ -154,8 +154,19 @@ export class AddimageComponent implements OnInit {
   onCreateAlbum() {
 
     const name = document.getElementById('albumName').innerText;
+    const category = (<HTMLSelectElement>document.getElementById('selCategory')).value;
+    console.log(category + 'XAAAAAAAAAAAAAA');
     const id = this.sharedData.getLoggedInUser().userId;
 
-    return this.http.post(`${environment.apiUrl}/${environment.album_path}/${id}/${name}`, null);
+    console.log(`${environment.apiAlbumUrl}/${environment.album_path}`);
+    return this.http.post(`${environment.apiUrl}/${environment.album_path}/`, {
+      category: {
+        id: category.split('|')[0],
+        title: category.split('|')[1]
+      },
+      images: [],
+      userId: id,
+      title: name
+    });
   }
 }

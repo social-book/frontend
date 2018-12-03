@@ -157,9 +157,10 @@ export class FindpeopleComponent implements OnInit {
 
     this.user = this.sd.getLoggedInUser(); // this works, but friends endpoint doesn't exist, use user and parse friends
 
-    this.userService.addFriend(this.user.userId + '', userId + '');
+    this.userService.getAddFriend(this.user.userId + '', userId + '').subscribe(data => window.location.reload());
 
-    window.location.reload(); // refresh
+
+    // window.location.reload(); // refresh
 
 
   }
