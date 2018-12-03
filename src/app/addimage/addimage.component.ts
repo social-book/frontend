@@ -32,10 +32,14 @@ export class AddimageComponent implements OnInit {
 
   }
 
+
+  // TODO GGGGGGGGGGGGGGGGGGGGGGGGGGGGG
   onChange(event: any, input: any) {
     this.files = [].slice.call(event.target.files);
 
     input.value = this.files.map(f => f.name).join(', ');
+
+    console.log(this.getBase64(this.files[0]));
   }
 
 
@@ -62,7 +66,20 @@ export class AddimageComponent implements OnInit {
     document.getElementById('uploader').hidden = false;
   }
 
+  /*
+  getBase64Dmitri(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }*/
+
   onUpload() {
+
+    console.log('XAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
 
     const data = {
       'albumId': '1',
@@ -101,7 +118,7 @@ export class AddimageComponent implements OnInit {
 
     console.log(formData.get('1'));
 
-    this.http.post<FormData>(`${environment.apiImageUrl}` +
+    this.http.post<FormData>(`${environment.apiImageUrl}` + '?albumId=' +
       this.album.id + '&userId=' + this.user.userId, formData, httpOptions).subscribe(
       (r) => {
         console.log('got r', r, ' : ', formData);
@@ -111,6 +128,19 @@ export class AddimageComponent implements OnInit {
       }
     );
 
+
+    this.http.get(`${environment.apiImageUrl}` +
+      this.album.id + '&userId=' + this.user.userId).subscribe(
+      (r) => {
+        console.log('got r', r);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+
+    /////////////////////////////////////////////////////////////////////////////
 
     /*
     // ?albumId=1&userId=1
@@ -153,20 +183,34 @@ export class AddimageComponent implements OnInit {
 
   onCreateAlbum() {
 
-    const name = document.getElementById('albumName').innerText;
+    const name = (<HTMLInputElement>document.getElementById('albumName')).value;
     const category = (<HTMLSelectElement>document.getElementById('selCategory')).value;
     console.log(category + 'XAAAAAAAAAAAAAA');
     const id = this.sharedData.getLoggedInUser().userId;
 
-    console.log(`${environment.apiAlbumUrl}/${environment.album_path}`);
-    return this.http.post(`${environment.apiUrl}/${environment.album_path}/`, {
-      category: {
-        id: category.split('|')[0],
-        title: category.split('|')[1]
+
+    /*
+    const album: Album = {
+      'category': {
+        'id': +category.split('|')[0],
+        'title': category.split('|')[1]
       },
-      images: [],
-      userId: id,
-      title: name
-    });
+      'id': 1,
+      'images': [],
+      'userId': id,
+      'title': name
+    };
+
+    console.log(JSON.stringify(album));
+
+    const path = `${environment.apiAlbumUrl}/${environment.album_path}/`
+    console.log(path);
+    return this.http.post<any>(path, album).pipe(first()).subscribe(data => console.log(data));
+    */
+
+    const cid = +category.split('|')[0];
+    const path = `${environment.apiAlbumUrl}/${environment.album_path}/add?categoryId=` + cid + '&userId=' + id + '&title=' + name;
+
+    return this.http.get<any>(path).subscribe(data => window.location.reload());
   }
 }

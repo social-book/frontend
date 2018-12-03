@@ -11,8 +11,8 @@
       <select id="selectedAlbum">
         <option *ngFor="let post of myAlbums">
           <div>
-            <p>{{post.album_title}}</p>
-            <p hidden="true" id="{{post.album_title}}">{{post.album_id}}</p>
+            <p>{{post.title}}</p>
+            <p hidden="true" id="{{post.title}}">{{post.id}}</p>
           </div>
         </option>
       </select>
