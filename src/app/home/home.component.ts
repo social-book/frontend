@@ -129,56 +129,68 @@ export class HomeComponent implements OnInit {
   callWithComponents2(lc) {
 
     console.log('servis: ', this.albumService);
-    this.albumService.getAll().pipe(first()).subscribe(data => { // TODO fetchi le prijateljeve...
+    this.albumService.getAll().pipe(first()).subscribe((data => { // TODO fetchi le prijateljeve...
 
         // DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data);
         // console.log(DomBuilderForHomeComponent.liList[0].domElements);
 
         console.log('FETCHING ALBUMS +++++++++++++++++++++++');
         console.log(data);
+        let index = -1;
         for (let i = 0; i < data.length; i++) {
 
           if (!this.isFriends(this.user.friends, data[i].userId)) {
             console.log(data[i] + ' is not friend, continuing');
             continue;
           }
-
+          index++;
           console.log('BUILDING LIST ITEM AND LINKING');
-          DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data, i);
+          DomBuilderForHomeComponent.buildRawListItemsAndConnect(lc, data, index);
 
           console.log(data);
           // this.postsNumber.push(j); // todo delete
           const meta = new AlbumMeta();
-          meta.id = data[i].id;
-          meta.album_title = data[i].title;
-          meta.category_id = data[i].category;
-          meta.user_id = data[i].userId;
-          meta.images = data[i].images;
-          meta.seq_nr = i;
+          meta.id = data[index].id;
+          meta.album_title = data[index].title;
+          meta.category_id = data[index].category;
+          meta.user_id = data[index].userId;
+          meta.images = data[index].images;
+          meta.seq_nr = index;
           this.posts.push(meta);
           // can be anywhere...
-          this.postImages[i] = [];
+          this.postImages[index] = [];
 
           console.log(DomBuilderForHomeComponent.liList[0].domElements);
-          console.log(i);
-          console.log(DomBuilderForHomeComponent.liList[i].domElements);
+          console.log(index);
+          console.log(DomBuilderForHomeComponent.liList[index].domElements);
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
+
           for (let k = 0; k < 4; k++) {
-            console.log(meta.images[i].imageSrc);
-            this.postImages[i][k] = new PostImg('http://159.122.186.89:31175' + meta.images[i].imageSrc, k);
-            /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
-              't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
-              'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
-            DomBuilderForHomeComponent.fillAlbumData(i, this.postImages, meta.user_id, meta.images[i].imageSrc);
+            try {
+              console.log(meta.images[index].imageSrc);
+              this.postImages[index][k] = new PostImg('http://159.122.186.89:31175' + meta.images[k].imageSrc, k);
+              /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
+                't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
+                'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
+              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages, meta.user_id, meta.images[k].imageSrc);
+            } catch (e) {
+              this.postImages[index][k] = new PostImg('/assets/noImg.png', k);
+              /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
+                't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
+                'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
+              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages, meta.user_id, meta.images[k].imageSrc);
+              console.log(e);
+            }
           }
+
         }
 
         console.log('FINISHED FETCHING FRIENDS +++++++++++++++++++++++');
 
         this.callWithComponents3();
 
-      },
+      }).bind(this),
       error1 => console.log('Oh no, ', error1.toString()));
 
   }
@@ -226,9 +238,12 @@ export class HomeComponent implements OnInit {
 
   isFriends(friends: User[], userId): boolean {
     let bool = false;
-    friends.forEach(data =>
+    /*friends.forEach(data =>
       bool = bool || data.userId === userId
-    );
+    );*/
+    for (let i = 0; i < friends.length; i++) {
+      bool = bool || friends[i].userId === +userId;
+    }
 
     return bool;
   }
