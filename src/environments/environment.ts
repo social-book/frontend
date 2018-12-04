@@ -8,6 +8,7 @@ export const environment = {
   apiAlbumUrl: 'http://159.122.186.89:31777/v1',
   apiImageUrl: 'http://159.122.186.89:31175',
   mockUrl: 'http://localhost:3000',
+  uploads: '/v1/uploads',
   user_path: 'users',
   album_path: 'albums',
   category_path: 'categories',

@@ -23,6 +23,13 @@ export class FindpeopleComponent implements OnInit {
 
   constructor(protected userService: UserService, public sd: SharedDataService) {
 
+    this.user = sd.getLoggedInUser(); // this works, but friends endpoitn doesn't exist, use user and parse friends
+    this.userService.getById(this.user.userId).subscribe((data => {
+      sd.setUser(data);
+      this.user = sd.getLoggedInUser();
+    }).bind(this));
+
+
     /*
     this.ignoredIds = [];
 

@@ -20,6 +20,7 @@ export class AddimageComponent implements OnInit {
   myAlbums: Album[];
   params: HttpParams;
   categories: Category[];
+  tempString: string;
 
   constructor(private http: HttpClient, public sharedData: SharedDataService, public albumService: AlbumService) {
     console.log(this.sharedData.user);
@@ -43,11 +44,63 @@ export class AddimageComponent implements OnInit {
   }
 
 
-  getBase64(file) {
+  getBase64(file): string {
     const reader = new FileReader();
+    this.tempString = '';
+    // reader.readAsDataURL(file);
+    reader.onload = () => {
+      // console.log(reader.result.toString().substring(reader.result.toString().indexOf(',') + 1));
+      this.tempString = reader.result.toString().substring(reader.result.toString().indexOf(',') + 1);
+      return this.tempString;
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+      return '';
+    };
     reader.readAsDataURL(file);
-    reader.onload = function () {
-      console.log(reader.result);
+    return this.tempString;
+  }
+
+  sendRequest64(file) {
+    const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      // console.log(reader.result.toString().substring(reader.result.toString().indexOf(',') + 1));
+      const gg = reader.result.toString().substring(reader.result.toString().indexOf(',') + 1);
+
+      for (let i = 0; i < this.files.length; i++) {
+
+        const imageString = this.getBase64(this.files[i]);
+        console.log('STRINGIIII' + imageString);
+        const getBody = {
+          'userId': this.user.userId,
+          'albumId': this.album.id,
+          'image': gg
+        };
+
+        this.http.post(`${environment.apiImageUrl}` + `${environment.uploads}`, getBody).subscribe(
+          (r) => {
+            console.log('got r', r, ' : ', getBody);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+
+
+        this.http.get(`${environment.apiImageUrl}` + `${environment.uploads}?userID=` +
+          this.user.userId + '&albumId=' + this.album.id +
+          '&image=' + gg).subscribe(
+          (r) => {
+            console.log('got r', r, ' : ', getBody);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
@@ -79,8 +132,69 @@ export class AddimageComponent implements OnInit {
   onUpload() {
 
     console.log('XAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    console.log(this.getBase64(this.files[0]));
+
+    this.myAlbums.forEach(element => {
+
+      const e = <HTMLSelectElement>document.getElementById('selectedAlbum');
+      const val = e.options[e.selectedIndex].firstElementChild.firstElementChild.innerHTML;
+
+      if (+document.getElementById(val).innerHTML === element.id) {
+        this.album = element;
+      }
+    });
+
+    /*const getBody = {
+      'userId': 1234,
+      'albumId': 1,
+      'image': (<string>this.getBase64(this.files[0]))
+    };
+
+    console.log(getBody);*/
+
+    /////////////////////////////////////////
+
+    this.sendRequest64(this.files);
+
+    /////////////////////////////////////////
+
+    /*
+    for (let i = 0; i < this.files.length; i++) {
+
+      const imageString = this.getBase64(this.files[i]);
+      console.log('STRINGIIII' + imageString);
+      const getBody = {
+        'userId': this.user.userId,
+        'albumId': this.album.id,
+        'image': imageString
+      };
+
+      this.http.post(`${environment.apiImageUrl}` + `${environment.uploads}`, getBody).subscribe(
+        (r) => {
+          console.log('got r', r, ' : ', getBody);
+        },
+        error => {
+          console.log(error);
+        }
+      );
 
 
+      this.http.get(`${environment.apiImageUrl}` + `${environment.uploads}?userID=` +
+        this.user.userId + '&albumId=' + this.album.id +
+        '&image=' + imageString).subscribe(
+        (r) => {
+          console.log('got r', r, ' : ', getBody);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    */
+
+
+    /////////////////////////////////////////////////
+    /*
     const data = {
       'albumId': '1',
       'userID': '1'

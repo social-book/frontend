@@ -135,9 +135,11 @@ export class HomeComponent implements OnInit {
         // console.log(DomBuilderForHomeComponent.liList[0].domElements);
 
         console.log('FETCHING ALBUMS +++++++++++++++++++++++');
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
 
           if (!this.isFriends(this.user.friends, data[i].userId)) {
+            console.log(data[i] + ' is not friend, continuing');
             continue;
           }
 
@@ -163,6 +165,7 @@ export class HomeComponent implements OnInit {
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
           for (let k = 0; k < 4; k++) {
+            console.log(meta.images[i].imageSrc);
             this.postImages[i][k] = new PostImg('http://159.122.186.89:31175' + meta.images[i].imageSrc, k);
             /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
               't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
