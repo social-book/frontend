@@ -151,29 +151,32 @@ export class HomeComponent implements OnInit {
           // this.postsNumber.push(j); // todo delete
           const meta = new AlbumMeta();
           meta.id = data[index].id;
-          meta.album_title = data[index].title;
-          meta.category_id = data[index].category;
-          meta.user_id = data[index].userId;
-          meta.images = data[index].images;
-          meta.seq_nr = index;
+          meta.album_title = data[i].title;
+          meta.category_id = data[i].category;
+          meta.user_id = data[i].userId;
+          meta.images = data[i].images;
+          meta.seq_nr = i;
           this.posts.push(meta);
           // can be anywhere...
           this.postImages[index] = [];
+          /*
+            index field pove kater element v listih DOM elementu je
+           */
 
           console.log(DomBuilderForHomeComponent.liList[0].domElements);
-          console.log(index);
+          console.log(i);
           console.log(DomBuilderForHomeComponent.liList[index].domElements);
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
 
           for (let k = 0; k < 4; k++) {
             try {
-              console.log(meta.images[index].imageSrc);
+              console.log(meta.images[k].imageSrc);
               this.postImages[index][k] = new PostImg('http://159.122.186.89:31175' + meta.images[k].imageSrc, k);
               /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
                 't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
                 'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
-              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages, meta.user_id, meta.images[k].imageSrc);
+              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k], meta.user_id, meta.images[k].imageSrc);
             } catch (e) {
               this.postImages[index][k] = new PostImg('/assets/noImg.png', k);
               /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
@@ -201,6 +204,22 @@ export class HomeComponent implements OnInit {
     console.log('servis: ', this.userService);
     for (let iter = 0; iter < this.posts.length; iter++) {
 
+      this.userService.getById(this.posts[iter].user_id).subscribe(podatek => { // TODO
+          console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('user SYNC ADD');
+          console.log('PODATEK[0]   ', podatek);
+          this.posts[iter].user = podatek;
+          console.log(this.posts[iter]);
+          console.log(this.posts[iter].user);
+          console.log('FINISHED FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
+          console.log('FILLING USER DATA');
+          DomBuilderForHomeComponent.fillAlbumUserData(iter, this.posts);
+        },
+        error1 => {
+          console.log('fail FETCHING OWNER');
+        }
+      );
+      /*
       this.user.friends.forEach(podatek => { // TODO
           console.log('FETCHING OWNER OF ALBUM +++++++++++++++++++++++');
           console.log('user SYNC ADD');
@@ -215,7 +234,7 @@ export class HomeComponent implements OnInit {
         error1 => {
           console.log('fail FETCHING OWNER');
         }
-      );
+      );*/
 
 
       /*this.userService.mockFriends().pipe(first()).subscribe(podatek => { // TODO
