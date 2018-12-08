@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {SharedDataService} from '../shared-data.service';
 import {User} from '../_models';
 import {Album} from '../_models/album';
@@ -64,7 +64,6 @@ export class AddimageComponent implements OnInit {
   sendRequest64(file) {
     const reader = new FileReader();
     // reader.readAsDataURL(file);
-    reader.readAsDataURL(file);
     reader.onload = () => {
       // console.log(reader.result.toString().substring(reader.result.toString().indexOf(',') + 1));
       const gg = reader.result.toString().substring(reader.result.toString().indexOf(',') + 1);
@@ -87,8 +86,7 @@ export class AddimageComponent implements OnInit {
             console.log(error);
           }
         );
-
-
+        /*
         this.http.get(`${environment.apiImageUrl}` + `${environment.uploads}?userID=` +
           this.user.userId + '&albumId=' + this.album.id +
           '&image=' + gg).subscribe(
@@ -99,12 +97,15 @@ export class AddimageComponent implements OnInit {
             console.log(error);
           }
         );
+        */
       }
 
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };
+    reader.readAsDataURL(file[0]);
+
   }
 
   xor1() {

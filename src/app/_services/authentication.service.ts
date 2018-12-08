@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
+import {sha256} from 'js-sha256';
 
 @Injectable()
 export class AuthenticationService {
@@ -14,7 +15,7 @@ export class AuthenticationService {
 
     const userObj = {
       'username': username,
-      'password': password
+      'password': sha256(password)
     };
 
     // v primeru zadovoljivega casa dodava se oAuth

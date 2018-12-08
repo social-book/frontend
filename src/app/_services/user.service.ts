@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {environment} from '../../environments/environment';
 import {User} from '../_models';
+import {sha256} from 'js-sha256';
 
 @Injectable()
 export class UserService {
@@ -108,11 +109,12 @@ export class UserService {
   login(user: User) {
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/login`, {
       'username': user.username,
-      'password': user.password
+      'password': sha256(user.password)
     });
   }
 
   register(user: User) {
+    user.password = sha256(user.password);
     return this.http.post(`${environment.apiUrl}/${environment.user_path}/register`, user);
   }
 

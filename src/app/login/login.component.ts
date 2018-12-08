@@ -10,6 +10,7 @@ import {stringify} from 'querystring';
 import {SharedDataService} from '../shared-data.service';
 import {User} from '../_models';
 
+
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
