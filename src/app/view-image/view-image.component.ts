@@ -7,6 +7,7 @@ import {Comment} from '../_models/comment';
 import {User} from '../_models';
 import {SharedDataService} from '../shared-data.service';
 import {UserService} from '../_services';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-view-image',
@@ -15,11 +16,12 @@ import {UserService} from '../_services';
 })
 export class ViewImageComponent implements OnInit {
 
-  public likenum = 0;
+  public likenum: number;
   public commentMsg = 'cyka';
   public specificComments: Comment[];
   public id: number;
   public user: User;
+  loadedImg: string;
 
   constructor(route: ActivatedRoute, private commentService: CommentService,
               private us: UserService, private sd: SharedDataService) {
@@ -49,8 +51,19 @@ export class ViewImageComponent implements OnInit {
 
     console.log('ID: ' + this.id);
     this.commentService.getCommentForPost(this.id).subscribe(data => this.specificComments = data);
-    this.commentService.getLikesForPost(this.id).subscribe(data => this.likenum = data.count);
+    this.commentService.getLikesForPost(this.id).subscribe((data => {
+      try {
+        this.likenum = data[0].likeAmount;
+        if (data.likeAmount === undefined) {
+          this.likenum = 0;
+        }
+      } catch (e) {
+        this.likenum = 0;
+      }
+    }).bind(this));
     this.commentService.getCommentForPost(this.id).subscribe(data => console.log(data));
+
+    this.loadedImg = `${environment.apiImageUrl}/images` + '?imageId=' + this.id;
 
   }
 
@@ -58,13 +71,15 @@ export class ViewImageComponent implements OnInit {
   }
 
   like() {
-
+    this.commentService.likePost(this.id, this.user.userId);
+    window.location.reload();
   }
 
   postComment() {
-    // const commentValue = <HTMLInputElement>document.getElementById("commentValue").innerText();
+    const commentValue = (<HTMLInputElement>document.getElementById('commentVal')).value;
     console.log('Value of comment: ' + commentValue);
     this.commentService.postComment(this.id, this.user.userId, commentValue);
+    window.location.reload();
   }
 }
 

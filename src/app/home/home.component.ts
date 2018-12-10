@@ -9,6 +9,7 @@ import {AlbumService} from '../_services/album.service';
 import {AlbumMeta} from '../_models/albumMeta';
 import {DomBuilderForHomeComponent} from './DomBuilder';
 import {of} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit {
   public id4: string;
   public user: User;
 
-  constructor(private userService: UserService, public sharedData: SharedDataService, private albumService: AlbumService) {
+  constructor(private userService: UserService, public sharedData: SharedDataService,
+              private albumService: AlbumService, private router: Router) {
 
     // this.userService.getAllMock().pipe(first()).forEach(data => this.currentUser = data[0]);
     // this.currentUser =  JSON.parse(localStorage.getItem('currentUser'));
@@ -70,6 +72,12 @@ export class HomeComponent implements OnInit {
 
 
     this.user = this.sharedData.getLoggedInUser(); // this workds, but friends endpoint doesn't exist, use user and parse friends
+
+    this.userService.getById(this.user.userId).subscribe(data => {
+      this.user = data;
+      this.sharedData.setUser(data);
+    });
+
 
     const friends$ = of(this.user.friends);
 
@@ -176,13 +184,15 @@ export class HomeComponent implements OnInit {
               /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
                 't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
                 'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
-              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k], meta.user_id, meta.images[k].imageSrc);
+              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k],
+                meta.user_id, meta.images[k].imageSrc, this.router);
             } catch (e) {
               this.postImages[index][k] = new PostImg('assets/noImg.png', k);
               /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
                 't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
                 'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
-              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k], meta.user_id, 'assets/noImg.png');
+              DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k],
+                meta.user_id, 'assets/noImg.png', this.router);
               console.log(e);
             }
           }

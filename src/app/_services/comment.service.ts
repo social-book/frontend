@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {environment} from '../../environments/environment';
 import {Comment} from '../_models/comment';
+import {Image} from '../_models/image';
 
 @Injectable()
 export class CommentService {
@@ -14,7 +15,7 @@ export class CommentService {
   }
 
   getLikesForPost(imageId: number) {
-    return this.http.get<LikeNumber>(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}`);
+    return this.http.get<LikeNumber[]>(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}`);
   }
 
   postComment(imageId: number, userId: number, message: string) {
@@ -34,6 +35,10 @@ export class CommentService {
     return this.http.put(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}`, null);
   }
 
+  /*getImage(imageId: number) {
+    return this.http.get<Image>(`${environment.apiImageUrl}/images` + '?imageId=' + imageId);
+  }
+
   /*
   getMock() {
     return this.http.get(`http://77.111.11.122/socialbook/v1/user-service/users/v1/users`);
@@ -42,6 +47,7 @@ export class CommentService {
 }
 
 export class LikeNumber {
-  count: number;
-  imageId: number;
+  image_id: number;
+  likeAmount: number;
+  likeId: number;
 }
