@@ -1,6 +1,8 @@
 export class Comment { // album
-  userId: number;
-  userName: string;
-  commentMsg: string;
-  imgRef: string;
+  user_id: number;
+  album_id: number;
+  comment_content: string;
+  comment_id: number;
+  // imgRef: string;
+  // userName: string;
 }
