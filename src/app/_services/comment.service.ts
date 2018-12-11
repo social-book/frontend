@@ -27,9 +27,9 @@ export class CommentService {
     };
 
     console.log(body);
-    console.log(`CALLING:  ${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/` + imageId + imageId);
+    console.log(`CALLING:  ${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/`);
     console.log('WITH BODY: ' + JSON.stringify(body));
-    return this.http.post(`${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/` + imageId, body);
+    return this.http.post(`${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/`, body);
 
   }
 

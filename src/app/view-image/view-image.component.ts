@@ -72,15 +72,17 @@ export class ViewImageComponent implements OnInit {
   }
 
   like() {
-    this.commentService.likePost(this.id, this.user.userId);
-    window.location.reload();
+    this.commentService.likePost(this.id, this.user.userId).pipe(map(gg => {
+      return gg;
+    })).subscribe((dost) => console.log(dost));
+    // window.location.reload();
   }
 
   postComment() {
     const commentValue = (<HTMLInputElement>document.getElementById('commentVal')).value;
     console.log('Value of comment: ' + commentValue);
-    this.commentService.postComment(this.id, this.user.userId, commentValue);
-    window.location.reload();
+    this.commentService.postComment(this.id, this.user.userId, commentValue).subscribe(xa => console.log(xa));
+    // window.location.reload();
   }
 }
 
