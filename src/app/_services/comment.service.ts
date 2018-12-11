@@ -15,7 +15,8 @@ export class CommentService {
   }
 
   getLikesForPost(imageId: number) {
-    return this.http.get<LikeNumber[]>(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}`);
+    console.log(`CALLING:  ${environment.apiCommentUrl}/${environment.like_path}/` + imageId);
+    return this.http.get<LikeNumber[]>(`${environment.apiCommentUrl}/${environment.like_path}/` + imageId);
   }
 
   postComment(imageId: number, userId: number, message: string) {
@@ -26,13 +27,16 @@ export class CommentService {
     };
 
     console.log(body);
+    console.log(`CALLING:  ${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/` + imageId + imageId);
+    console.log('WITH BODY: ' + JSON.stringify(body));
     return this.http.post(`${environment.apiCommentUrl}` + '/' + `${environment.comment_path}/` + imageId, body);
 
   }
 
 
   likePost(imageId: number, userId: number) {
-    return this.http.put(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}`, null);
+    console.log(`CALLING:  ${environment.apiCommentUrl}` + '/' + `${environment.like_path}/` + imageId);
+    return this.http.put(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}/` + imageId, null);
   }
 
   /*getImage(imageId: number) {

@@ -45,16 +45,17 @@ export class ViewImageComponent implements OnInit {
     // route.data includes both `data` and `resolve`
     const user = route.data.pipe(map(d => d.user));
 
-    const mock = route.queryParams.pipe(map(q => q.a));
+    // const mock = route.queryParams.pipe(map(q => q.a));
 
-    mock.subscribe(data => console.log(data));
+    // mock.subscribe(data => console.log(data));
 
     console.log('ID: ' + this.id);
     this.commentService.getCommentForPost(this.id).subscribe(data => this.specificComments = data);
     this.commentService.getLikesForPost(this.id).subscribe((data => {
+      console.log(JSON.stringify(data) + ' ------------------ ');
       try {
         this.likenum = data[0].likeAmount;
-        if (data.likeAmount === undefined) {
+        if (data[0].likeAmount === undefined) {
           this.likenum = 0;
         }
       } catch (e) {
