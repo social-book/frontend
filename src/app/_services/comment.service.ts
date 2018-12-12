@@ -33,10 +33,19 @@ export class CommentService {
 
   }
 
+  postCommentWithGet(imageId: number, userId: number, message: string) {
+    return this.http.get(`${environment.apiCommentUrl}` + '/' +
+      `${environment.comment_path}/comment/` + userId + '/' + imageId + '/' + message);
+  }
+
 
   likePost(imageId: number, userId: number) {
     console.log(`CALLING:  ${environment.apiCommentUrl}` + '/' + `${environment.like_path}/` + imageId);
     return this.http.put(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}/` + imageId, null);
+  }
+
+  likePostWithGet(imageId: number, userId: number) {
+    return this.http.get(`${environment.apiCommentUrl}` + '/' + `${environment.like_path}/` + imageId + '/like');
   }
 
   /*getImage(imageId: number) {
@@ -52,6 +61,6 @@ export class CommentService {
 
 export class LikeNumber {
   image_id: number;
-  likeAmount: number;
+  likeAmount: string;
   likeId: number;
 }

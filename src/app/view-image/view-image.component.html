@@ -8,14 +8,15 @@
     <div class="reactionsection">
       <div class="likesection">
         <p>{{likenum}} people like this</p>
+        <p>Fun fact about the like number:<br>{{fact}}</p>
         <button class="sbcolor bold" (click)="like()" type="button">LIKE</button>
       </div>
       <div class="commentsection">
         <div class="commentDiv" *ngFor="let comment of specificComments" style="height: 128px">
-          <img class="size128 floating" src="{{comment.imgRef}}">
+          <img class="size128 floating" src="{{comment.imgref}}">
           <div class="commentValue floating inheritSize">
             <p style="font-weight: bold; font-family: arial">{{comment.userName}}</p>
-            <p class="commentValue">{{comment.commentMsg}}</p>
+            <p class="commentValue">{{comment.comment_content}}</p>
           </div>
         </div>
       </div>
