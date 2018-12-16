@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
 
     // this.albumService.getById(user.userId); TODO <-
-    this.albumService.getAllMock().subscribe(data => this.albums = data);
+    this.albumService.getByUserId(this.user.userId).subscribe(data => this.albums = data);
 
   }
 

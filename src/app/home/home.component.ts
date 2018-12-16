@@ -177,6 +177,8 @@ export class HomeComponent implements OnInit {
           // DomBuilderForHomeComponent.fillAlbumUserData(i, this.posts);
 
 
+          const baseUrl = this.router.url.split('/home')[0];
+
           for (let k = 0; k < 4; k++) {
             try {
               console.log(meta.images[k].imageSrc);
@@ -185,14 +187,14 @@ export class HomeComponent implements OnInit {
                 't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
                 'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
               DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k],
-                meta.user_id, meta.images[k].imageSrc, this.router);
+                meta.user_id, meta.images[k].imageSrc, this.router, baseUrl);
             } catch (e) {
               this.postImages[index][k] = new PostImg('assets/noImg.png', k);
               /*this.postImages[i].push(new PostImg('https://scontent-frt3-2.xx.fbcdn.net/v/' +
                 't31.0-8/18595508_10212899110776865_8647419151747411834_o.jpg?_' +
                 'nc_cat=108&_nc_ht=scontent-frt3-2.xx&oh=c89675bf33166bbd844d5b0ff69ecc47&oe=5C403C09', k));*/
               DomBuilderForHomeComponent.fillAlbumData(index, this.postImages[index][k],
-                meta.user_id, 'assets/noImg.png', this.router);
+                meta.user_id, 'assets/noImg.png', this.router, baseUrl);
               console.log(e);
             }
           }

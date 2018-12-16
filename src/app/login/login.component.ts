@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(data));
           console.log(localStorage.getItem('currentUser'));
           this.sd.user = JSON.parse(localStorage.getItem('currentUser'));
-          this.router.navigate([this.returnUrl + '/home']);
+          this.router.navigateByUrl(this.returnUrl + '/home');
         },
         error => {
           console.log(this.returnUrl);
