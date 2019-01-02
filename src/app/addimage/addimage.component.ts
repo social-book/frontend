@@ -81,6 +81,7 @@ export class AddimageComponent implements OnInit {
         this.http.post(`${environment.apiImageUrl}` + `${environment.uploads}`, getBody).subscribe(
           (r) => {
             console.log('got r', r, ' : ', getBody);
+            window.location.reload();
           },
           error => {
             console.log(error);
