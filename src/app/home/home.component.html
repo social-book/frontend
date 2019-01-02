@@ -2,6 +2,7 @@
 <div id="container">
   <app-sidebar></app-sidebar>
   <div class="padding" id="content">
+    <router-outlet></router-outlet>
     <ol id="listContainer" style="width: 100%; height: 100%">
       <!-- TODO -->
       <!-- <li class="inheritsize" *ngFor="let post of posts"> <!-- asnyc for reading observable vals --> <!--
@@ -28,5 +29,4 @@
       </li> -->
     </ol>
   </div>
-  <router-outlet></router-outlet>
 </div>
