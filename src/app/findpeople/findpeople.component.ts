@@ -16,6 +16,7 @@ export class FindpeopleComponent implements OnInit {
   addedUsers: User[];
   ignoredIds: number[];
   avilableToAdd: User[];
+  avilableToAddFiltered: User[];
   user: User;
   user$: Observable<User>;
 
@@ -108,6 +109,7 @@ export class FindpeopleComponent implements OnInit {
 
     this.ignoredIds = [];
     this.avilableToAdd = [];
+    this.avilableToAddFiltered = [];
 
     this.user = this.sd.getLoggedInUser(); // this works, but friends endpoint doesn't exist, use user and parse friends
 
@@ -128,6 +130,7 @@ export class FindpeopleComponent implements OnInit {
           dat.forEach((function (item) {
             if (!this.ignoredIds.includes(item.userId)) {
               this.avilableToAdd.push(item);
+              this.avilableToAddFiltered.push(item);
             }
           }).bind(this));
         }).bind(this)
@@ -171,4 +174,12 @@ export class FindpeopleComponent implements OnInit {
 
 
   }
+
+  /*filter(event: any) {
+    this.avilableToAddFiltered = this.avilableToAdd;
+    const value = (<HTMLInputElement>document.getElementById('inp')).value;
+    this.avilableToAddFiltered.filter(user => {
+      return user.name.includes(value) || user.surname.includes(value);
+    });
+  }*/
 }
