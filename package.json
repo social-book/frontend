@@ -22,9 +22,10 @@
     "@angular/router": "^7.0.1",
     "angular-base64": "^2.0.5",
     "core-js": "^2.5.4",
+    "firebase-tools": "^6.2.2",
+    "js-sha256": "^0.9.0",
     "rxjs": "^6.0.0",
-    "zone.js": "^0.8.26",
-    "js-sha256": "^0.9.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.3",

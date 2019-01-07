@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
         let index = -1;
         for (let i = 0; i < data.length; i++) {
 
-          if (!this.isFriends(this.user.friends, data[i].userId)) {
+          if (!this.isFriends(this.user.friends, data[i].userId && data[i].userId !== this.user.userId)) {
             console.log(data[i] + ' is not friend, continuing');
             continue;
           }
