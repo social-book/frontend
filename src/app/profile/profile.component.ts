@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.sd = JSON.parse(localStorage.getItem('currentUSer'));
+    // this.sd = JSON.parse(localStorage.getItem('currentUser'));
     // console.log(this.sd.user);
   }
 

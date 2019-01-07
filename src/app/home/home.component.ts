@@ -38,8 +38,8 @@ export class HomeComponent implements OnInit {
     // const friends$ = userService.getFriends(this.currentUser.userId);
 
 
-    this.sharedData.user = JSON.parse(localStorage.getItem('currentUSer'));
-    this.sharedData.setUser(JSON.parse(localStorage.getItem('currentUSer')));
+    this.sharedData.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.sharedData.setUser(localStorage.getItem('currentUser'));
 
     console.log('constructed home');
 
@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
         let index = -1;
         for (let i = 0; i < data.length; i++) {
 
-          if (!this.isFriends(this.user.friends, data[i].userId && data[i].userId !== this.user.userId)) {
+          if (!this.isFriends(this.user.friends, data[i].userId, this.user.userId) && data[i].userId !== this.user.userId) {
             console.log(data[i] + ' is not friend, continuing');
             continue;
           }
@@ -268,12 +268,18 @@ export class HomeComponent implements OnInit {
   }
 
 
-  isFriends(friends: User[], userId): boolean {
+  isFriends(friends: User[], userId, parentId): boolean {
+
+    if (this.user.userId === parentId) {
+      return true;
+    }
+
     let bool = false;
     /*friends.forEach(data =>
       bool = bool || data.userId === userId
     );*/
     for (let i = 0; i < friends.length; i++) {
+      console.log(userId + ' compare to ' + this.user.userId);
       bool = bool || friends[i].userId === +userId;
     }
 

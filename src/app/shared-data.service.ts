@@ -25,7 +25,11 @@ export class SharedDataService {
   }
 
   setUser(data) {
-    this.user = JSON.parse(data);
+
+    console.log(data);
+
+    this.user = <User> data;
+    console.log(this.user);
     console.log(localStorage.getItem('currentUser'));
   }
 
